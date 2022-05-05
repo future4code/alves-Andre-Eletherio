@@ -1,0 +1,10 @@
+1. Pizza
+2. Pizza Doce
+3. Hamburger
+4. Macarrão
+5. Lasanha
+6. Cachorro-Quente
+7. Pastel
+8. Strogonoff
+9. Churrasco
+10. Pão
