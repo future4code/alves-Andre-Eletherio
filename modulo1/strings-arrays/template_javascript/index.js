@@ -46,3 +46,16 @@
 // const tarefaRealizada = prompt("Digite o índice de uma atividade que já realizou: ");
 // listaDeTarefas.splice(tarefaRealizada, 1);
 // console.log(listaDeTarefas);
+
+
+// Desafios
+
+//Desafio 1
+// const frase = "Olá opa oi";
+// const array = frase.split(" ");
+// console.log(array);
+
+
+//Desafio 2
+// const array = ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"];
+// console.log(array.indexOf("Laranja"));
