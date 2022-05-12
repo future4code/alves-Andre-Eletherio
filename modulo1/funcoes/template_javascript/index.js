@@ -18,53 +18,52 @@
 
 // Exercício 1
 // a)
-// function voce() {
-//     const nome = "André";
-//     const idade = 20;
-//     const endereco = "Petrópolis";
-//     const profissao = "estudante";
-//     console.log(`Eu sou ${nome}, tenho ${idade} anos, moro em ${endereco} e sou ${profissao}.`)
-// }
-// voce();
+function voce() {
+    const nome = "André";
+    const idade = 20;
+    const endereco = "Petrópolis";
+    const profissao = "estudante";
+    console.log(`Eu sou ${nome}, tenho ${idade} anos, moro em ${endereco} e sou ${profissao}.`)
+}
+voce();
 
 // // b)
-// const pessoa = (nome2, idade2, endereco2, profissao2) => `Eu sou ${nome2}, tenho ${idade2} anos, moro em ${endereco2} e sou ${profissao2}.`;
-// console.log(pessoa("André", 20, "Petrópolis", "Estudante"));
+const pessoa = (nome2, idade2, endereco2, profissao2) => `Eu sou ${nome2}, tenho ${idade2} anos, moro em ${endereco2} e sou ${profissao2}.`;
+console.log(pessoa("André", 20, "Petrópolis", "Estudante"));
 
 
 // Exercício 2
 // a
-// const soma = (a,b) => a + b;
-// console.log(soma(3,3));
+const soma = (a,b) => a + b;
+console.log(soma(3,3));
 // b
-// const maior = (a,b) => a > b;
-// console.log(maior(3,2));
+const maior = (a,b) => a > b;
+console.log(maior(3,2));
 // c
-// const parImpar = a => a % 2 === 0;
-// console.log(parImpar(2));
+const parImpar = a => a % 2 === 0;
+console.log(parImpar(2));
 // d
-
-// const upper = frase => {
-//     console.log(frase.length);
-//     console.log(frase.toUpperCase());
-// }
-// upper("Oi, tudo bem?");
+const upper = frase => {
+    console.log(frase.length);
+    console.log(frase.toUpperCase());
+}
+upper("Oi, tudo bem?");
 
 
 // Exercício 3
-// const sum = (x,y) => console.log(`Soma: ${x+y}`);
-// const sub = (x,y) => console.log(`Diferença ${x-y}`);
-// const mul = (x,y) => console.log(`Multiplicação ${x*y}`);
-// const div = (x,y) => console.log(`Divisão ${x/y}`);
+const sum = (x,y) => console.log(`Soma: ${x+y}`);
+const sub = (x,y) => console.log(`Diferença ${x-y}`);
+const mul = (x,y) => console.log(`Multiplicação ${x*y}`);
+const div = (x,y) => console.log(`Divisão ${x/y}`);
 
-// const n1 = Number(prompt("Digite o primeiro número: "));
-// const n2 = Number(prompt("Digite o segundo número: "));
+const n1 = Number(prompt("Digite o primeiro número: "));
+const n2 = Number(prompt("Digite o segundo número: "));
 
-// console.log(`Números inseridos: ${n1} e ${n2}`);
-// sum(n1, n2);
-// sub(n1, n2);
-// mul(n1, n2);
-// div(n1, n2);
+console.log(`Números inseridos: ${n1} e ${n2}`);
+sum(n1, n2);
+sub(n1, n2);
+mul(n1, n2);
+div(n1, n2);
 
 
 
@@ -105,7 +104,7 @@ const pitagoras = (cateto1, cateto2) => {
 }
 
 
-const n1 = +prompt("Cateto 1: ");
-const n2 = +prompt("Cateto 2: ");
+const c1 = +prompt("Cateto 1: ");
+const c2 = +prompt("Cateto 2: ");
 
-pitagoras(n1,n2);
+pitagoras(c1,c2);
