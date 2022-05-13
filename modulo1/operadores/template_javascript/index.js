@@ -57,3 +57,27 @@ console.log("O primeiro numero é igual ao segundo?", numero1 === numero2);
 console.log("O primeiro numero é divisível pelo segundo?", numero1 % numero2 === 0);
 console.log("O segundo numero é divisível pelo primeiro?", numero2 % numero1 === 0);
 */
+
+
+
+
+// Desafio
+
+// Desafio 1
+console.log((77-32)*(5/9) + 273.15 + " K");
+console.log(80 * (9/5) + 32 + " F");
+console.log(`${prompt("Graus Celsius: ") * (9/5) + 32} F, ${((30 * (9/5) + 32) - 32) * (5/9) + 273.15} K`);
+
+
+// Desafio 2
+console.log(`Valor a ser pago é: ${(280 * 0.05) - 15/100*(280 * 0.05)}`);
+
+
+// Desafio 3
+console.log(`20lb equivalem a ${20 * 0.45359237} kg`);
+console.log(`10.5oz equivalem a ${10.5 * 0.02835} kg`);
+console.log(`100 mi equivalem a ${100 * 1609.34} m`);
+console.log(`50 ft equicalem a ${50 * 0.3048} m`);
+console.log(`103.56gal equivalem a ${103.56 * 3.78541} l`);
+const xic = prompt("Xic: ");
+console.log(`${xic} xic equivalem a ${xic * 0.24} l`);
