@@ -62,3 +62,13 @@ b = c;
 
 console.log("O novo valor de a é", a) // O novo valor de a é 25
 console.log("O novo valor de b é", b) // O novo valor de b é 10
+
+
+
+//Desafios
+
+const numero1 = Number(prompt("Primeiro número: "));
+const numero2 = Number(prompt("Segundo número: "));
+
+console.log(`O primeiro número somado ao segundo número resulta em: ${numero1 + numero2}`);
+console.log(`O primeiro número multiplicado pelo segundo número resulta em: ${numero1 * numero2}`);
