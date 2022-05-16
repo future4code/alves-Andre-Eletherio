@@ -124,58 +124,13 @@ function checaRenovacaoRG() {
    const idade13 = anoAtual13 - anoNascimento13;
    const carteiraIdade13 = anoAtual13 - anoCarteira13;
 
-  // const condicao1 = idade <= 20;
-  // const condicao2 = idade > 20 && idade <= 50;
-  // const condicao3 = idade > 50;
-  if (idade13 <= 20) {
-    if (carteiraIdade13 >= 5) {
-      console.log(true);
-    }
-    else {
-      console.log(false);
-    }
-  }
-  if (idade13 > 20 && idade13 <= 50) {
-    if (carteiraIdade13 >= 10) {
-      console.log(true);
-    }
-    else {
-      console.log(false);
-    }
-  }
-  if (idade13 > 50) {
-    if (carteiraIdade13 >= 15) {
-      console.log(true);
-    }
-    else {
-      console.log(false);
-    }
-  }
+   console.log((idade13 <= 20 && carteiraIdade13 >= 5) || (idade13 > 20 && idade13 <= 50 && carteiraIdade13 > 10) || (idade13 > 50 && carteiraIdade13 > 15));
 }
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
   // implemente sua lógica aqui
-  
-  if (ano % 400 === 0) {
-    return true;
-  }
-  if (ano % 4 === 0) {
-    if (ano % 100 === 0) {
-      if (ano % 400 !== 0) {
-        return false;
-      }
-      else {
-        return true;
-      }
-    }
-    else {
-      return true;
-    }
-  }
-  else {
-    return false;
-  }
+  return((ano % 400 === 0) || (ano % 4 === 0) && !(ano % 100 === 0 && ano % 400 !== 0));
 }
 
 // EXERCÍCIO 15
@@ -185,10 +140,5 @@ function checaValidadeInscricaoLabenu() {
   const ensino = prompt("Você tem ensino médio completo? ");
   const disponibilidade = prompt("Você tem disponibilidade exclusiva durante os horários do curso? ");
 
-  if (maior18 === "sim" && ensino === "sim" && disponibilidade === "sim") {
-    console.log(true);
-  }
-  else {
-    console.log(false);
-  }
+  console.log((maior18 === "sim") && (ensino === "sim") && (disponibilidade === "sim"));
 }
