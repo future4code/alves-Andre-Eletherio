@@ -70,7 +70,11 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-   
+    const nPrimeirosPares = [];
+    for (let i = 0; i < n; i++) {
+        nPrimeirosPares.push(i * 2);
+    }
+    return nPrimeirosPares;
 }
 
 // EXERCÍCIO 09
