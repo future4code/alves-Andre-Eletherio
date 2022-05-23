@@ -15,17 +15,17 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-    return array.sort((a, b) => a - b)
+    return array.sort((a, b) => a - b);
 };
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-    return array.filter((number) => number % 2 === 0)
+    return array.filter((number) => number % 2 === 0);
 }
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+    return array.filter((number) => number % 2 === 0).map((number) => number ** 2);
 }
 
 // EXERCÍCIO 06
