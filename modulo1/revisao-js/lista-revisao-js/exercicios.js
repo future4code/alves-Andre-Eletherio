@@ -10,7 +10,11 @@ function retornaTamanhoArray(array) {
 
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
-    return array.reverse();
+    let arrayTemporario = [];
+    for (let i = array.length - 1; i >= 0; i--) {
+        arrayTemporario.push(array[i]);
+    };
+    return arrayTemporario;
 }
 
 // EXERCÍCIO 03
@@ -146,5 +150,5 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
-    
+
 }
