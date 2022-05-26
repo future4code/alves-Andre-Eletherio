@@ -65,6 +65,17 @@ button:active {
 .icone {
     height: 15px;
     width: 15px;
+    border-bottom: none;
+}
+
+.icone:active {
+    width: 10px;
+    height: 10px;
+}
+
+#titulo-botao {
+    text-decoration: none;
+    color: white
 }
 
 
