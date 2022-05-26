@@ -69,6 +69,9 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #container-de-descricao>ol {
