@@ -46,6 +46,14 @@ div>p:first-child {
     background-color: #c44f00;
 }
 
+button:hover {
+    background-color: #ab9b53;
+}
+
+button:active {
+    color: white;
+}
+
 .container {
     height: 500px;
     text-align: center;
@@ -135,4 +143,8 @@ td button {
 
 #back-button:hover {
     background-color: #635a3d
+}
+
+#back-button:active {
+    color: white;
 }
