@@ -108,6 +108,10 @@ table {
     margin: auto;
 }
 
+img {
+    width: 50px
+}
+
 td button {
     background-color: #fadf63;
     width: 150px;
