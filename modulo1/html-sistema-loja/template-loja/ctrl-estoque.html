@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <p>America</p>
+        <h1 id="nome-loja"><img src="../img/america.png" alt="america" id="nome-loja"></h1>
     </header>
     
-    <nav>
-        <a href="./index.html">Página Inicial |</a>
-        <a href="./ctrl-estoque.html">Controle de Estoque |</a>
-        <a href="./add-produto.html">Adicionar Produto |</a>
-        <a href="./funcionarios.html">Funcionários</a>
-    </nav>
+    <div class="container">
+        <p id="texto-sub">Aqui nós vendemos mais barato que a Americanas!</p>
+        <nav> 
+            <ul class="list-title">
+                <li><a href="./index.html">Página Inicial |</a></li>
+                <li><a href="./ctrl-estoque.html">Controle de Estoque |</a></li>
+                <li><a href="./add-produto.html">Adicionar Produto |</a></li>
+                <li><a href="./funcionarios.html">Funcionários</a></li>
+            </ul>
+        </nav>
+    </div>
 
-    <h2>Controle de Estoque</h2>
+    <h2 class="h2-2">Controle de Estoque</h2>
 
-    <table>
+    <table id="table-2">
         <tr>
-            <th>Foto</th>
+            <th class="itens-lista">Foto</th>
             <th>Descrição</th>
             <th>Preço (R$)</th>
             <th>Quantidade disponível</th>
@@ -65,5 +71,14 @@
         </tr>
 
     </table>
+
+    <footer id="footer-estoque">
+        <p>Siga-nos nas redes sociais!</p>
+        <div class="instagram">
+            <a href="https://www.instagram.com/labenu_/"><img src="../img/instagram-logo.png"/></a>
+            <a href="https://www.facebook.com/pages/category/Software/Labenu-388131481831991/"><img src="../img/facebook-logo-3-1.png"/></a>
+            <a href="https://www.youtube.com/c/labenu"><img src="../img/youtube-logo.png"/></a>
+        </div>
+    </footer>
 </body>
 </html>
