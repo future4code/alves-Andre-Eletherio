@@ -1,0 +1,132 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #181A1B;
+    color: lightgray;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+header {
+    background-color: #C60028;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#nome-loja {
+    width: 10vw;
+}
+
+.container {
+    display: flex;
+    background-color: #C60028;
+    justify-content: space-between;
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+#texto-sub {
+    margin-left: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin-bottom: 35px;
+    margin-right: 20px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+li a:hover {
+    background-color: darkred;
+}
+
+.video {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 34px;
+}
+
+#h3 {
+    text-align: center;
+}
+
+main a {
+    color: red;
+}
+
+.ps {
+    margin-left: 10px;
+}
+
+footer {
+    background-color: #C60028;
+    text-align: center;
+    height: 57x;
+    justify-content: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.h2-2 {
+    margin-left: 20px;
+    margin-bottom: 100px;
+}
+
+table {
+    display: flex;
+    justify-content: center;
+    border-collapse: separate;
+    border-spacing: 100px 0;
+    margin-bottom: 40px;
+}
+  
+td {
+padding: 10px 0;
+text-align: center;
+}
+
+.div-3 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 158px;
+}
+
+.li30 {
+    font-size: 35px;
+    text-align: center;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.li3 {
+    font-size: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+
+.li300 {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+div ul li ul li {
+    float: none;
+}
+
+form {
+    margin-left: 40px;
+    margin-bottom: 329px;
+}
