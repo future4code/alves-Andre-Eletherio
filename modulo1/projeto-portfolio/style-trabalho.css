@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 60px;
+    background-color: #1f203a;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.metade-cima {
+    display: flex;
+    align-items: center;
+    background-color: #f2f2f2;
+    height: 50vh;
+    width: 100%;
+}
+
+.background-foto {
+    background-color: #1f203a;
+    height: 530px;
+    width: 530px;
+    position: relative;
+    top: 200px;
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+img {
+    height: 500px;
+    border-radius: 20px;
+}
+
+.metade-baixo {
+    display: flex;
+    background-color: #1f203a;
+    height: 50vh;
+    width: 100%;
+}
