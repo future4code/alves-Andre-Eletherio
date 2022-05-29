@@ -6,13 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Portifólio</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
+        <ul id="ul-header">
+            <li><a href="#">Home</a></li>
+            <li><a href="./site.html">Projetos</a></li>
+        </ul>
         <div class="menu-btn">
-            <div class="menu-btn__burger">
-
-            </div>
+            <div class="menu-btn__burger"></div>
         </div>
         <script src="./main.js"></script>
     </header>
@@ -23,7 +28,11 @@
     <section class="section2">
         <div class="texto">
             <h1>Olá, meu nome é André Eletherio</h1>
-            <h1 id="texto2">Educação:</h1>
+            <p id="p-apre" >Sou um brasileiro de 20 anos, apaixonado por tecnologia!</p>
+            <div id="texto2">
+                <h1 id="texto-texto">Educação:</h1>
+                <h1>Habilidades:</h1>
+            </div>
         </div>
     </section>
     <section class="section3">
@@ -49,13 +58,27 @@
                     </div>
                 </div>
             </div>
+            <div id="folheto-direita" class="div-folheto">
+                    <div>
+                        <h1>Raciocínio Lógico:</h1>
+                        <p>Capacidade de compreender um problema e pensar em soluções eficientes para os mesmos.</p>
+                    </div>
+                    <div>
+                        <h1>Honestidade</h1>
+                        <p>Prezo sempre pela honestidade, e penso que ela é a base para um relação de confiança</p>
+                    </div>
+                    <div>
+                        <h1>Empatia</h1>
+                        <p>Busco sempre me colocar no lugar dos outros, sejam eles companheiros de trabalho ou clientes, buscando sempre entendê-los</p>
+                    </div>
+            </div>
         </div>
     </section>
     <section class="trabalhos">
         <h1 id="titulo-trabalho">Últimos trabalhos realizados:</h1>
         <div id="div-trabalhos">
             <div id="trabalho1">
-                <a href="#"><img id="imagem-trabalho1" src="./img/site.png" alt="foto site"></a>
+                <a href="./site.html"><img id="imagem-trabalho1" src="./img/site.png" alt="foto site"></a>
             </div>
             <div id="trabalho2">
                 <h1 id="h1-trabalho" >Front-End Sistema de Estoque</h1>
@@ -75,8 +98,8 @@
         <div class="formulario"></div>
     </section>
     <footer>
-        <a href="https://www.instagram.com/andre_eletherio/"><img src="./img/instagram-logo.png" alt="Link instagram"></a>
-        <a href="https://github.com/AndreEletherio"><img id="github" src="./img/github-logo.png" alt="Link Github"></a>
+        <a target="_blank" href="https://www.instagram.com/andre_eletherio/"><img src="./img/instagram-logo.png" alt="Link instagram"></a>
+        <a target="_blank" href="https://github.com/AndreEletherio"><img id="github" src="./img/github-logo.png" alt="Link Github"></a>
     </footer>
 </body>
 </html>

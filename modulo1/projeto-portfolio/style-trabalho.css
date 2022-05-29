@@ -1,18 +1,43 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Nunito";
 }
 
 header {
     height: 60px;
     background-color: #1f203a;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+}
+
+#ul-header {
+    display: flex;
+    list-style-type: none;
+}
+
+header ul li a {
+    text-decoration: none;
+    margin-left: 80px;
+    color: #fff;
+}
+
+.menu-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    margin-right: 80px;
 }
 
 .metade-cima {
     display: flex;
+    justify-content: space-around;
     align-items: center;
     background-color: #f2f2f2;
     height: 50vh;
@@ -25,7 +50,6 @@ header {
     width: 530px;
     position: relative;
     top: 200px;
-    margin-left: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,6 +59,35 @@ header {
 img {
     height: 500px;
     border-radius: 20px;
+}
+
+#explicacoes {
+    background-color: #1f203a;
+    height: 530px;
+    width: 400px;
+    position: relative;
+    top: 200px;
+    border-radius: 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    padding: 20px;
+    font-size: 120%;
+}
+
+section div div h2 {
+    margin-bottom: -30px;
+}
+
+section div div ul {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+section div div ul li {
+    margin-bottom: 10px;
 }
 
 .metade-baixo {
