@@ -1,0 +1,110 @@
+/* CORES
+- Rosa escuro: `mediumvioletred`
+- Rosa claro: `#f2d0e0`
+- Sombra do card: `darkgray`
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    font-weight: 900;
+}
+
+img {
+    height: 1em;
+}
+
+header {
+    background-color: mediumvioletred;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 24px;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    font-size: 150%;
+}
+
+.logo h1 {
+    font-size: 180%;
+    margin-left: 20px;
+}
+
+header button {
+    height: 25px;
+    width: 50px;
+}
+
+.container {
+    display: flex;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+article {
+    background-color: #fff;
+    width: 276px;
+    height: 390px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 10px darkgray;
+}
+
+article img {
+    width: 276px;
+    height: 276px;
+    margin-bottom: 5px;
+}
+
+article h1 {
+    font-size: 160%;
+}
+
+article p {
+    font-size: 105%;
+    margin-top: 20px;
+    padding: 0 5px;
+}
+
+aside {
+    background-color: #f2d0e0;
+    width: 550px;
+    
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    font-size: 140%;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.texto-nav {
+    display: flex;
+}
+
+.texto-nav p {
+    margin-left: 20px;
+}
+
+footer {
+    background-color: mediumvioletred;
+    text-align: center;
+    padding: 15px;
+    font-size: 110%;
+}

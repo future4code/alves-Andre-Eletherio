@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    justify-items: center;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.challenge {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 1fr repeat(14, 1fr) 1fr;
+}
+
+header {
+    background-color: #feda31;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.header {
+    background-color: #38ca49;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu1 {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    background-color: rgb(185, 35, 35);
+    grid-area: 2/1/16/2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    
+}
+
+.content1 {
+    background-color: #ed25bc;
+    grid-area: 1/1/6/5;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.content2 {
+    background-color: #1277d6;
+    grid-area: 6/1/8/3;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.box1 {
+    background-color: #ffffff;
+    grid-area: 6/3/8/4;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    background-color: #fc433e;
+    grid-area: 6/4/7/5;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.extra {
+    background-color: #2afd77;
+    grid-area: 7/4/8/5;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    background-color: #af22c6;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
