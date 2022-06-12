@@ -161,22 +161,30 @@ export default class SecaoMensagem extends Component {
         })
     }
 
+    removeMessage = (e) => {
+        const arrayDelete = [...this.state.mensagens]
+        arrayDelete.splice(e.target.dataset.user, 1)
+        this.setState({
+            mensagens: arrayDelete
+        })
+    }
+
     
     
     render() {
         const handleSubmit = event => {
             event.preventDefault();
         }
-        const listaMensagens = this.state.mensagens.map((mensagem) => {
+        const listaMensagens = this.state.mensagens.map((mensagem, indice) => {
             if (mensagem.nome.toLowerCase() == "eu") {
                 return (
-                    <MensagemEu>
+                    <MensagemEu onClick={this.removeMessage} data-user={indice}>
                         {mensagem.mensagem}
                         <DubleCheckImg src={dubleCheck} alt="" />
                     </MensagemEu>
                 )
             } else {
-                return <MensagemOutro><NomeOutro>{mensagem.nome}</NomeOutro>{mensagem.mensagem}</MensagemOutro>
+                return <MensagemOutro onClick={this.removeMessage} data-user={indice}><NomeOutro data-user={indice}>{mensagem.nome}</NomeOutro>{mensagem.mensagem}</MensagemOutro>
             }
         })
 
