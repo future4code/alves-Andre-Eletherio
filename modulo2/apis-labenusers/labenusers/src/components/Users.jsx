@@ -2,39 +2,55 @@ import React, { Component } from "react";
 import axios from 'axios'
 
 export class Users extends Component {
+    state = {
+        searchName: '',
+        nameFilter: ''
+    }
+    
+    componentDidMount() {
+        this.props.getAllUsers();
+    }
 
-    deleteUser = (userId) => {
-        if (window.confirm("Realmente deseja deletar esse usuário?")) {
-        axios.delete(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
+    searchUsers = () => {
+        axios.get(
+            `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=${this.state.searchName}&email=`,
             {
                 headers: {
                     Authorization: "andre-eletherio-alves"
                 }
             }
-        ).then((response)=>{
-            console.log(response)
-            this.props.getAllUsers()
-        }).catch((error)=>{
-            console.log(error)
-        })} else {
-            alert("não foi apagado opa")
-        }
+        ).then((res)=>{
+            console.log(res.data[0].name)
+            this.setState({nameFilter: res.data[0].name})
+        }).catch((err)=>{
+            console.log(err)
+        })
     }
 
-    componentDidMount() {
-        this.props.getAllUsers();
+    handleName = (e) => {
+        this.setState({searchName: e.target.value})
     }
-    
+
     render() {
 
         return (
             <section>
-                {this.props.arrayUsers.map((user) => {
+                <h1>Lista Usuários</h1>
+                <div>
+                    <input type="text" onChange={this.handleName}/>
+                    <button onClick={this.searchUsers}>Buscar</button>
+                </div>
+                {this.props.arrayUsers.filter((user)=> {
+                    if (this.state.nameFilter === '') {
+                        return user
+                    } else {
+                        return user.name === this.state.nameFilter
+                    }
+                }).map((user) => {
                     return (
-                        <div>
-                            <li>{user.name}</li>
-                            <button onClick={()=> this.deleteUser(user.id)}>X</button>
+                        <div key={user.id}>
+                            <li onClick={()=> this.props.toInfo(user)}>{user.name}</li>
+                            <button onClick={() => this.props.deleteUser(user.id)}>X</button>
                         </div>
                     )
                 })}

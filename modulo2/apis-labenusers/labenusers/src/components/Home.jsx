@@ -11,8 +11,8 @@ export class Home extends Component {
         axios.post(
             "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
             {
-                name: this.props.name,
-                email: this.props.email
+                name: this.state.name,
+                email: this.state.email
             },
             {
                 headers: {
@@ -20,10 +20,22 @@ export class Home extends Component {
                 }
             }
         ).then((response) => {
-            console.log(response.status)
-            this.props.getAllUsers()
+            alert("Usuário(a) cadastrado(a) com sucesso!")
+            this.setState({name: '', email: '',})
         }).catch((error) => {
             console.log(error.response)
+        })
+    }
+
+    getName = (e) => {
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+    getEmail = (e) => {
+        this.setState({
+            email: e.target.value
         })
     }
 
@@ -31,8 +43,9 @@ export class Home extends Component {
 
         return (
             <section>
-                <input type="text" placeholder="Nome" onChange={this.props.getName} />
-                <input type="text" name="" id="" placeholder="E-mail" onChange={this.props.getEmail} />
+                <h1>Criar Usuário</h1>
+                <input type="text" placeholder="Nome" value={this.state.name} onChange={this.getName} />
+                <input type="text" name="" id="" placeholder="E-mail" value={this.state.email} onChange={this.getEmail} />
                 <button onClick={this.createUser}>Criar Usuário</button>
             </section>
         )

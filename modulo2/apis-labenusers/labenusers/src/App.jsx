@@ -1,18 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Home } from './components/Home'
 import { Users } from './components/Users'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Info } from './components/Info';
 
 export default class App extends Component {
   state = {
     name: '',
     email: '',
+    page: "home",
+    userInfoId: {},
     arrayUsers: [],
-    page: false,
+  }
+
+  deleteUser = (userId) => {
+    if (window.confirm("Realmente deseja deletar esse usuário?")) {
+      axios.delete(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
+        {
+          headers: {
+            Authorization: "andre-eletherio-alves"
+          }
+        }
+      ).then((response) => {
+        alert("Usuário deletado com sucesso!")
+        this.getAllUsers()
+      }).catch((error) => {
+        console.log(error)
+      })
+    } else {
+      alert("não foi apagado opa")
+    }
+  }
+
+  deleteUserInfo = (userId) => {
+    if (window.confirm("Realmente deseja deletar esse usuário?")) {
+      axios.delete(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
+        {
+          headers: {
+            Authorization: "andre-eletherio-alves"
+          }
+        }
+      ).then((response) => {
+        alert("Usuário deletado com sucesso!")
+        this.getAllUsers()
+        this.setState({page: "users"})
+      }).catch((error) => {
+        console.log(error)
+      })
+    } else {
+      alert("não foi apagado opa")
+    }
   }
 
   getAllUsers = () => {
@@ -25,60 +64,56 @@ export default class App extends Component {
       }
     ).then((response) => {
       this.setState({ arrayUsers: response.data })
-      console.log(response.data)
     }).catch((error) => {
       console.log(error)
     })
   }
 
-  getName = (e) => {
-    this.setState({
-      name: e.target.value
-    })
+  choosePage = () => {
+    switch (this.state.page) {
+      case "home":
+        return <Home
+          name={this.state.name}
+          email={this.state.email}
+          getName={this.getName}
+          getEmail={this.getEmail}
+          getAllUsers={this.getAllUsers}
+        />
+      case "users":
+        return <Users
+          getAllUsers={this.getAllUsers}
+          deleteUser={this.deleteUser}
+          toInfo={this.toInfo}
+          arrayUsers={this.state.arrayUsers}
+        />
+      case "info":
+        return <Info
+          userInfoId={this.state.userInfoId}
+          toUsers={this.toUsers}
+          deleteUser={this.deleteUserInfo}
+        />
+    }
   }
 
-  getEmail = (e) => {
-    this.setState({
-      email: e.target.value
-    })
+  changePage = () => {
+    this.state.page === "home" ? this.setState({ page: "users" }) : this.setState({ page: "home" })
   }
 
-  changeLink = () => {
-    this.setState({
-      page: !this.state.page
-    })
+  toInfo = (user) => {
+    this.setState({ page: "info", userInfoId: { id: user.id } })
+  }
+
+  toUsers = () => {
+    this.setState({ page: "users" })
   }
 
   render() {
-    let rout
-    this.state.page ? rout = "/" : rout = "/users"
 
     return (
-      <Router>
-        <section>
-          <Link to={rout}><button onClick={this.changeLink}>Trocar de tela</button></Link>
-          <Switch>
-            <Route exact path={"/"}>
-              <Home
-                name={this.state.name}
-                email={this.state.email}
-                getName={this.getName}
-                getEmail={this.getEmail}
-                getAllUsers={this.getAllUsers}
-              />
-            </Route>
-            <Route exact path={"/users"}>
-              <Users
-                getAllUsers={this.getAllUsers}
-                arrayUsers={this.state.arrayUsers}
-              />
-            </Route>
-            <Route path={"/info"}>
-              <Info/>
-            </Route>
-          </Switch>
-        </section>
-      </Router>
+      <section>
+        <button onClick={this.changePage}>Trocar de tela</button>
+        {this.choosePage()}
+      </section>
     )
   }
 } 
