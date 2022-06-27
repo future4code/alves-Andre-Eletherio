@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Page = styled.section`
+export const Page = styled.body`
     display: flex;
     background-color: green;
     width: 100%;
@@ -16,10 +16,15 @@ export const Header = styled.header`
     background-color: #0f0f0f;
     height: 56px;
     width: 100%;
+    display: flex;
+    align-items: center;
+`;
+
+export const H1Header = styled.h1`
     color: #fff;
+    margin-left: 30px;
     font-size: 40px;
     font-weight: 900;
-    padding-left: 30px;
 `;
 
 export const H1 = styled.h1`

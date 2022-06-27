@@ -4,8 +4,18 @@ import { AddPlaylist } from "./components/AddPlaylist";
 import { DetailsPlaylist } from "./components/DetailsPlaylist";
 import { PlaylistList } from "./components/PlaylistList";
 import axios from 'axios'
-import { Page, Header, H1, Nav, Main, Section, DetailAndAdd, Detail, Add } from './StyleApp'
+import { Page, Header, H1Header, H1, Nav, Main, Section, DetailAndAdd, Detail, Add } from './StyleApp'
 import { HeaderPlaylist } from "./HeaderPlaylist";
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+  }
+`
 
 
 export default class App extends React.Component {
@@ -79,7 +89,8 @@ export default class App extends React.Component {
 
     return (
       <Page>
-        <Header>Labefy</Header>
+        <GlobalStyle/>
+        <Header><H1Header>Labefy</H1Header></Header>
         <Main>
           <Nav>
             <H1>Playlists:</H1>
