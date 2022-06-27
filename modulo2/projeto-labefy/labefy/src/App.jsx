@@ -12,13 +12,39 @@ export default class App extends React.Component {
   state = {
     selectedPlaylist: '',
     songs: [],
-    playlistName: ''
-  }
+    playlistName: '',
+    playlists: [],
+    playlist: {}
+    }
+
+    componentDidMount() {
+        this.getAllPlaylists()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        this.state.playlists !== prevState.playlists && this.getAllPlaylists()
+    }
+
+    getAllPlaylists = () => {
+        axios.get(
+            "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+            {
+                headers: {
+                    Authorization: "andre-eletherio-alves"
+                }
+            }
+        ).then((res) => {
+            this.setState({
+                playlists: res.data.result.list
+            })
+        })
+    }
 
   selectPlaylist = (playlist) => {
     this.setState({
       selectedPlaylist: playlist.id,
-      playlistName: playlist.name
+      playlistName: playlist.name,
+      playlist: playlist
     })
     axios.get(
       `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlist.id}/tracks`,
@@ -57,7 +83,7 @@ export default class App extends React.Component {
         <Main>
           <Nav>
             <H1>Playlists:</H1>
-            <PlaylistList selectPlaylist={this.selectPlaylist} deletePlaylist={this.deletePlaylist} />
+            <PlaylistList selectPlaylist={this.selectPlaylist} deletePlaylist={this.deletePlaylist} playlists={this.state.playlists}/>
             <AddPlaylist />
           </Nav>
           <Section>
@@ -67,7 +93,7 @@ export default class App extends React.Component {
                 <DetailsPlaylist playlistId={this.state.selectedPlaylist} songs={this.state.songs} />
               </Detail>
               <Add>
-                <AddSong playlistId={this.state.selectedPlaylist} selectPlaylist={this.selectPlaylist} />
+                <AddSong playlistId={this.state.selectedPlaylist} selectPlaylist={this.selectPlaylist} playlist={this.state.playlist} />
               </Add>
             </DetailAndAdd>
           </Section>

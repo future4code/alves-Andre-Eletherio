@@ -67,7 +67,7 @@ export class AddSong extends React.Component {
             }
         ).then((res) => {
             console.log(res)
-            this.props.selectPlaylist(this.props.playlistId)
+            this.props.selectPlaylist(this.props.playlist)
             this.setState({
                 song: '',
                 artist: '',

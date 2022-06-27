@@ -51,6 +51,17 @@ export class AddPlaylist extends React.Component {
         })
       }
 
+      testSpotfy = () => {
+        axios.get(
+            "https://api.spotify.com/search?q=name:abacab&type=album,track",
+            {
+                headers: {
+                    Authorization: "asdjfi"
+                }
+            }
+        ).then((res)=>console.log(res)).catch((err)=>console.log(err.response.data))
+      }
+
     render() {
         const show = this.state.playlistButton === "button" ? <ButtonPlaylist changeButton={this.changeButton} /> : <Input type="text" autoFocus value={this.state.newPlaylist} onChange={this.getNewPlaylistName} placeholder="Nova Playlist" onKeyDown={this.handleKeyDown} />
 

@@ -9,35 +9,9 @@ const Li = styled.li`
 `;
 
 export class PlaylistList extends React.Component {
-    state = {
-        playlists: []
-    }
-
-    componentDidMount() {
-        this.getAllPlaylists()
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        this.state.playlists !== prevState.playlists && this.getAllPlaylists()
-    }
-
-    getAllPlaylists = () => {
-        axios.get(
-            "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
-            {
-                headers: {
-                    Authorization: "andre-eletherio-alves"
-                }
-            }
-        ).then((res) => {
-            this.setState({
-                playlists: res.data.result.list
-            })
-        })
-    }
 
     render() {
-        const playlistList = this.state.playlists.map((playlist) => <Li key={playlist.id} onDoubleClick={()=> this.props.deletePlaylist(playlist)} onClick={() => this.props.selectPlaylist(playlist)}>{playlist.name}</Li>)
+        const playlistList = this.props.playlists.map((playlist) => <Li key={playlist.id} onDoubleClick={()=> this.props.deletePlaylist(playlist)} onClick={() => this.props.selectPlaylist(playlist)}>{playlist.name}</Li>)
 
         return (
             <section>
