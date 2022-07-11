@@ -84,6 +84,32 @@ const CardLayout = styled.section`
     }
 `;
 
+const SectionErro = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+`;
+
+const P = styled.p`
+  color: #fff;
+`;
+
+const Button = styled.button`
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: transparent;
+      font-weight: 700;
+      transition: transform .1s;
+      color: #fff;
+      border-color: #fff;
+      &:hover {
+      transform: scale(1.1);
+  }
+`;
+
 export function Home(props) {
   const [photo, setPhoto] = useState('')
   const [name, setName] = useState('')
@@ -104,7 +130,7 @@ export function Home(props) {
       setBio(res.data.profile.bio)
       setAge(res.data.profile.age)
       setId(res.data.profile.id)
-    }).catch((err) => console.log(err))
+    }).catch((err) => setPhoto(''))
   }
 
   const choosePerson = (choice) => {
@@ -118,8 +144,17 @@ export function Home(props) {
     getNewProfile()
   }
 
+  const resetAll = () => {
+    axios.put(
+      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:andre-eletherio-alves/clear"
+    ).then((res) => {
+      console.log(res)
+      getNewProfile()
+    }).catch((err) => console.log(err.response))
+  }
+
   return (
-    <CardLayout>
+    photo ? <CardLayout>
       <div className="card2" style={{ backgroundImage: "url(" + photo + ")" }}>
         <div className="middle">
           {photo &&
@@ -134,6 +169,9 @@ export function Home(props) {
         <button onClick={() => choosePerson(false)} className="dislike">X</button>
         <button onClick={() => choosePerson(true)} className="like">♡</button>
       </div>
-    </CardLayout>
+    </CardLayout> : <SectionErro>
+      <P>Sem mais pessoas</P>
+      <Button onClick={resetAll}>Reset</Button>
+    </SectionErro>
   )
 }

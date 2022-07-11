@@ -12,20 +12,11 @@ function App() {
     page === 'home' ? setPage('matches') : setPage('home')
   }
 
-  const resetAll = () => {
-    axios.put(
-      "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:andre-eletherio-alves/clear"
-    ).then((res) => {
-      console.log(res)
-    }).catch((err) => console.log(err.response))
-  }
-
   return (
     <Screen>
       {page === 'home' ? <Home choosePage={choosePage} /> : <Matches />}
       <Buttons>
         <button onClick={choosePage}>Mathces</button>
-        <button onClick={resetAll}>Reset</button>
       </Buttons>
     </Screen>
   );
