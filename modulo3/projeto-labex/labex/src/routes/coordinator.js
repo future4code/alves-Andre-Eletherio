@@ -16,5 +16,4 @@ export const goToCreateTripPage = (navigate) => {
 
 export const goToTripDetailsPage = (navigate, id) => {
     navigate(`/admin/trips/${id}`)
-    // Discover how to pass by path when clicking item on list of trips, it has to appear the details of the selected one
 }

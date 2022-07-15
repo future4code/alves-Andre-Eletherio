@@ -24,11 +24,11 @@ export function LoginPage() {
             "password": password
         }
         axios.post(
-            BASE_URL + "login", body
+            BASE_URL + "/login", body
         ).then((res) => {
             localStorage.setItem("token", res.data.token)
             goToAdminHomePage(navigate)
-        }).catch((err) => console.log(err))
+        }).catch((err) => console.log("err"))
     return;
 }
 

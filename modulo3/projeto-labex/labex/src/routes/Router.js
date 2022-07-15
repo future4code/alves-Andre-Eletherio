@@ -20,7 +20,7 @@ export function Router() {
                     <Route element={<PrivateRoutes />}>
                         <Route path="/admin/trips/list" element={<AdminHomePage />} />
                         <Route path="/admin/trips/create" element={<CreateTripPage />} />
-                        <Route path="/tripDetails" element={<TripDetailsPage />} />
+                        <Route path="/admin/trips/:id" element={<TripDetailsPage />} />
                     </Route>
             </Routes>
             </BrowserRouter>
