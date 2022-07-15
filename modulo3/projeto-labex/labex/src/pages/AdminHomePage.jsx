@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom'
 import { goToCreateTripPage, goToTripDetailsPage } from '../routes/coordinator'
 import { BASE_URL } from '../constants/BASE_URL'
@@ -17,6 +18,18 @@ export function AdminHomePage() {
             {!isLoading && error && !trips && <p>Ocorreu um erro</p>}
             {!isLoading && trips && trips.trips.length > 0 && tripList}
             {!isLoading && trips && trips.trips.length === 0 && <p>Não há viagens</p>}
+=======
+import {useNavigate} from 'react-router-dom'
+import { goToCreateTripPage, goToTripDetailsPage } from '../routes/coordinator'
+
+export function AdminHomePage() {
+    const navigate = useNavigate()
+    return (
+        <section>
+            <div>AdminHomePage</div>
+            <button onClick={()=> goToCreateTripPage(navigate)}>CreateTrip</button>
+            <button onClick={()=> goToTripDetailsPage(navigate, 7)}>Details</button>
+>>>>>>> b05d755cb51d47a4ae9c71f31d20b5f4bf99cc53
         </section>
     )
 }

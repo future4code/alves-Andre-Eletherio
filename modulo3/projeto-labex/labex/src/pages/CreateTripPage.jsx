@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useForm } from "../hooks/useForm"
 import {BASE_URL} from '../constants/BASE_URL'
 import axios from 'axios'
@@ -45,5 +46,10 @@ export function CreateTripPage() {
         <button>Criar</button>
       </form>
     </div>
+=======
+export function CreateTripPage() {
+  return (
+    <div>CreateTripPage</div>
+>>>>>>> b05d755cb51d47a4ae9c71f31d20b5f4bf99cc53
   )
 }

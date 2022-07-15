@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from "react"
 import { useForm } from "../hooks/useForm"
 import {BASE_URL} from '../constants/BASE_URL'
@@ -40,5 +41,10 @@ export function ApplicationFormPage() {
         <button>Enviar</button>
       </form>
     </div>
+=======
+export function ApplicationFormPage() {
+  return (
+    <div>ApplicationFormPage</div>
+>>>>>>> b05d755cb51d47a4ae9c71f31d20b5f4bf99cc53
   )
 }
