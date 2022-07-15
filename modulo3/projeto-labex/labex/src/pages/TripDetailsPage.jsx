@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
@@ -76,10 +75,5 @@ export function TripDetailsPage() {
         {trip.approved?.length > 0 ? approved : <p>Sem Resultados</p>}
       </div>
     </div>
-=======
-export function TripDetailsPage() {
-  return (
-    <div>TripDetailsPage</div>
->>>>>>> b05d755cb51d47a4ae9c71f31d20b5f4bf99cc53
   )
 }

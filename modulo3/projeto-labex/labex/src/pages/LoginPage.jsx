@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import axios from "axios"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
@@ -39,17 +38,6 @@ export function LoginPage() {
             <input onChange={onChangeEmail} type="text" placeholder="email" />
             <input onChange={onChangePassord} type="password" placeholder="Password" />
             <button onClick={useLogin}>Entrar</button>
-=======
-import { goToAdminHomePage } from "../routes/coordinator"
-import {useNavigate} from 'react-router-dom'
-
-export function LoginPage() {
-    const navigate = useNavigate()
-    return (
-        <section>
-            <div>LoginPage</div>
-            <button onClick={()=> goToAdminHomePage(navigate, true)}>AdmHomePage</button>
->>>>>>> b05d755cb51d47a4ae9c71f31d20b5f4bf99cc53
         </section>
     )
 }
