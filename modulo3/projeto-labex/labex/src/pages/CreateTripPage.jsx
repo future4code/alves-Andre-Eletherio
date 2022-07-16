@@ -1,6 +1,7 @@
 import { useForm } from "../hooks/useForm"
 import {BASE_URL} from '../constants/BASE_URL'
 import axios from 'axios'
+import { Header } from "../components/Header"
 
 export function CreateTripPage() {
   
@@ -16,15 +17,14 @@ export function CreateTripPage() {
           "auth": token
         }
       }
-    ).then((res)=>console.log(res)).catch((err)=>console.log(err))
+    ).then((res)=>alert("Viagem criada com sucesso!")).catch((err)=>console.log(err))
   }
-
-  console.log(form)
 
   //ta dando erro no post, dizendo que é indefinido
 
   return (
     <div>
+      <Header />
       <h1>Criar Viagem</h1>
       <form onSubmit={create}>
         <input name="name" onChange={onChange} value={form.name} />

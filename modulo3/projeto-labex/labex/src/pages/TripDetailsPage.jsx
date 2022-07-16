@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import { Header } from "../components/Header";
 import { BASE_URL } from "../constants/BASE_URL";
 import { useRequestData } from "../hooks/useRequestData";
 
@@ -59,6 +60,7 @@ export function TripDetailsPage() {
 
   return (
     <div>
+      <Header />
       <h1>{trip.name}</h1>
       <div>
         <p>Descrição: {trip.description}</p>
@@ -68,11 +70,11 @@ export function TripDetailsPage() {
       </div>
       <div>
         <h1>Candidatos Pendentes</h1>
-        {pending}
+        {trip.candidates?.length > 0 ? pending : <p>Sem candidatos</p>}
       </div>
       <div>
         <h1>Candidatos Aprocados</h1>
-        {trip.approved?.length > 0 ? approved : <p>Sem Resultados</p>}
+        {trip.approved?.length > 0 ? approved : <p>Sem candidatos</p>}
       </div>
     </div>
   )
