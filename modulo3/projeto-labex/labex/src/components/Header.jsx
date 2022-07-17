@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { goToAdminHomePage } from "../routes/coordinator"
+import { goToAdminHomePage, goToHomePage, goToListTripsPage, goToLoginPage } from "../routes/coordinator"
 import { HeaderStyle } from "../styles/style"
-// Fazer o header.
-// Fazer o site do jeito que estava planejando no início mesmo.
+
 export function Header(props) {
     const [isLogged, setIsLogged] = useState(false)
 
@@ -13,14 +12,16 @@ export function Header(props) {
         localStorage.getItem("token") === null ? setIsLogged(false) : setIsLogged(true)
     }, [props.isLogged])
 
-    const clear = () => {
+    const logout = () => {
         localStorage.clear()
+        setIsLogged(false)
+        goToHomePage(navigate)
     }
 
     return (
         <HeaderStyle>
-            <h1>Labex</h1>
-            {isLogged ?<div><button onClick={() => goToAdminHomePage(navigate, false)}>Área de Admin</button><p>Logout</p></div> : <p>Login</p>}
+            <h1 onClick={()=> goToHomePage(navigate)}>Labex</h1>
+            {isLogged ?<div> <button className="buttonHover" onClick={()=> goToHomePage(navigate)}>Viagens</button> <button className="buttonHover" onClick={() => goToAdminHomePage(navigate, false)}>Área de Admin</button> <button className="buttonHover" onClick={logout}>Logout</button></div> : <div> <button className="buttonHover" onClick={()=> goToHomePage(navigate)}>Viagens</button> <button className="buttonHover" onClick={() => goToAdminHomePage(navigate, false)}>Área de Admin</button></div>}
         </HeaderStyle>
     )
 }

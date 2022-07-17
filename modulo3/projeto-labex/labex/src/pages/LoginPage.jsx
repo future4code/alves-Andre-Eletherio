@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { Header } from "../components/Header"
 import { BASE_URL } from "../constants/BASE_URL"
 import { goToAdminHomePage } from '../routes/coordinator'
+import { LoginStyle, Screen } from "../styles/style"
 
 export function LoginPage() {
     const [email, setEmail] = useState('')
@@ -32,16 +33,22 @@ export function LoginPage() {
             setIsLogged(true)
             goToAdminHomePage(navigate)
         }).catch((err) => alert("Usuário/Senha incorretos."))
-    return;
-}
+        return;
+    }
 
     return (
-        <section>
-            <Header isLogged={isLogged}/>
-            <div>LoginPage</div>
-            <input onChange={onChangeEmail} type="text" placeholder="email" />
-            <input onChange={onChangePassord} type="password" placeholder="Password" />
-            <button onClick={useLogin}>Entrar</button>
-        </section>
+        <Screen>
+            <Header isLogged={isLogged} />
+            <LoginStyle>
+                <section className="card">
+                    <h1>Fazer Login</h1>
+                    <div className="form">
+                        <input onChange={onChangeEmail} type="text" placeholder="email" />
+                        <input onChange={onChangePassord} type="password" placeholder="Password" />
+                    </div>
+                    <button onClick={useLogin}>Entrar</button>
+                </section>
+            </LoginStyle>
+        </Screen>
     )
 }
