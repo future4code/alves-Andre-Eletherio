@@ -19,7 +19,7 @@ export function ApplicationFormPage() {
     ).then((res) => {
       alert("Cadastrado com Sucesso!")
       clean()
-    }).catch((err) => console.log(err))
+    })
   }
 
   return (

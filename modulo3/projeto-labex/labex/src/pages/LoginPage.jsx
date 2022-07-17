@@ -21,7 +21,8 @@ export function LoginPage() {
         setPassord(e.target.value)
     }
 
-    const useLogin = () => {
+    const useLogin = (e) => {
+        e.preventDefault()
         const body = {
             "email": email,
             "password": password
@@ -42,11 +43,11 @@ export function LoginPage() {
             <LoginStyle>
                 <section className="card">
                     <h1>Fazer Login</h1>
-                    <div className="form">
+                    <form onSubmit={useLogin} className="form">
                         <input onChange={onChangeEmail} type="text" placeholder="email" />
                         <input onChange={onChangePassord} type="password" placeholder="Password" />
-                    </div>
-                    <button onClick={useLogin}>Entrar</button>
+                        <button>Entrar</button>
+                    </form>
                 </section>
             </LoginStyle>
         </Screen>

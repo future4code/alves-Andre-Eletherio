@@ -20,7 +20,7 @@ export function AdminHomePage() {
         "auth": token
       }
     }
-    ).then((res) => refresh()).catch((err) => console.log(err.response))
+    ).then((res) => refresh())
   }
 
   const [trips, isLoading, error] = useRequestData(BASE_URL + "/trips")
@@ -52,7 +52,7 @@ export function AdminHomePage() {
     ).then((res) => {
       alert("Viagem criada com sucesso!")
       refresh()
-    }).catch((err) => console.log(err))
+    })
   }
 
   // Está deletando, mas não atualizando a página

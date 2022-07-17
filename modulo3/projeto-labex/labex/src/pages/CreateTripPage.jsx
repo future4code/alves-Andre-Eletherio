@@ -17,7 +17,7 @@ export function CreateTripPage() {
           "auth": token
         }
       }
-    ).then((res)=>alert("Viagem criada com sucesso!")).catch((err)=>console.log(err))
+    ).then((res)=>alert("Viagem criada com sucesso!"))
   }
 
   //ta dando erro no post, dizendo que é indefinido
