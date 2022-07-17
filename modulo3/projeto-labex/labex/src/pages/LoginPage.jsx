@@ -44,8 +44,8 @@ export function LoginPage() {
                 <section className="card">
                     <h1>Fazer Login</h1>
                     <form onSubmit={useLogin} className="form">
-                        <input onChange={onChangeEmail} type="text" placeholder="email" />
-                        <input onChange={onChangePassord} type="password" placeholder="Password" />
+                        <input required onChange={onChangeEmail} type="text" placeholder="email" />
+                        <input required onChange={onChangePassord} type="password" placeholder="Password" />
                         <button>Entrar</button>
                     </form>
                 </section>
