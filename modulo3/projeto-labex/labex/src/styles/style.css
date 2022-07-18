@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-image: url("https://images.alphacoders.com/193/thumb-1920-193.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+input, select {
+    background-color: #e8f0fe;
+}
+
+.transformScale {
+    transition: transform .2s;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.transformScale:hover {
+    transform: scale(1.03);
+}
+
+.buttonHover {
+    transition: transform .2s;
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.buttonHover:hover{
+    transform: scale(1.03);
+    background-color: red;
+    color: #000;
+    border: 1px solid #000;
+}

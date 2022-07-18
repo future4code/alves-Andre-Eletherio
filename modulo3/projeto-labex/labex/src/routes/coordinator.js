@@ -1,13 +1,13 @@
-export const goToAdminHomePage = (navigate, logged) => {
-    logged ? navigate("/admin/trips/list") : navigate("/login")
+export const goToAdminHomePage = (navigate) => {
+    navigate("/admin/trips/list")
 }
 
 export const goToListTripsPage = (navigate) => {
     navigate("/trips/list")
 }
 
-export const goToApplicationFormPage = (navigate) => {
-    navigate("/trips/application")
+export const goToApplicationFormPage = (navigate, trip) => {
+    navigate(`/trips/application/${trip.name}/${trip.id}`)
 }
 
 export const goToCreateTripPage = (navigate) => {
@@ -16,4 +16,12 @@ export const goToCreateTripPage = (navigate) => {
 
 export const goToTripDetailsPage = (navigate, id) => {
     navigate(`/admin/trips/${id}`)
+}
+
+export const goToLoginPage = (navigate) => {
+    navigate('/login')
+}
+
+export const goToHomePage = (navigate) => {
+    navigate("/")
 }
