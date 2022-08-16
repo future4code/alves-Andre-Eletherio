@@ -1,0 +1,68 @@
+[
+	{
+		"userId": 1,
+		"id": 1,
+		"title": "Comer arroz",
+		"completed": false
+	},
+	{
+		"userId": 1,
+		"id": 2,
+		"title": "Comer feijão",
+		"completed": false
+	},
+	{
+		"userId": 1,
+		"id": 3,
+		"title": "Comer bife",
+		"completed": false
+	},
+	{
+		"userId": 2,
+		"id": 4,
+		"title": "Ir à academia",
+		"completed": false
+	},
+	{
+		"userId": 2,
+		"id": 5,
+		"title": "Cortar o cabelo",
+		"completed": false
+	},
+	{
+		"userId": 2,
+		"id": 6,
+		"title": "Comprar televisão",
+		"completed": false
+	},
+	{
+		"userId": 3,
+		"id": 7,
+		"title": "Comprar telefone fixo",
+		"completed": false
+	},
+	{
+		"userId": 3,
+		"id": 8,
+		"title": "Comprar pratos",
+		"completed": false
+	},
+	{
+		"userId": 3,
+		"id": 9,
+		"title": "Doar camisa",
+		"completed": false
+	},
+	{
+		"userId": 3,
+		"id": 10,
+		"title": "opaaa",
+		"completed": false
+	},
+	{
+		"userId": 3,
+		"id": 11,
+		"title": "opaaaaaa",
+		"completed": false
+	}
+]
