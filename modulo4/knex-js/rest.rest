@@ -1,0 +1,37 @@
+GET http://localhost:3003/actors/get
+
+###
+
+PUT http://localhost:3003/actors/update
+Content-Type: application/json
+
+{
+    "salary": 8000000000000,
+    "id": "005"
+}
+
+###
+
+DELETE http://localhost:3003/actors/delete/005
+
+###
+
+GET http://localhost:3003/actors/salaryAvg/female
+
+###
+
+GET http://localhost:3003/actors/001
+
+###
+
+GET http://localhost:3003/actors/gender?gender=male
+
+###
+
+PUT http://localhost:3003/actors/updateSalary
+Content-Type: application/json
+
+{
+    "salary": 80000,
+    "id": "001"
+}
