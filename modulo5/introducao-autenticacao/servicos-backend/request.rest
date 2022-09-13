@@ -1,0 +1,19 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "testandoemail@gmail.com",
+    "password": "123456"
+}
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "testandoemail@gmail.com",
+    "password": "123456"
+}
+###
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+headers: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNiZTY2MjM0LWQ5NjAtNDE1Yy1hMjVhLWU4ZmFkZTM2YjY5OSIsImlhdCI6MTY2MzAzNjM3NSwiZXhwIjoxNjYzMDM5OTc1fQ.d3lr3Kzv0QDborMTQ08Yb1YYEHP176oRjSezuiOzrJY"
