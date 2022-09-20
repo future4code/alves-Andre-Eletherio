@@ -1,0 +1,10 @@
+GET http://localhost:3003/cep?cep=63240970
+###
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "cep": "63240970",
+    "numero": 1234,
+    "complemento": "Apartamento 1234"
+}
