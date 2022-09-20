@@ -1,0 +1,123 @@
+GET http://localhost:3003/users
+
+###
+
+GET http://localhost:3003/tasks
+
+###
+
+GET http://localhost:3003/users/001
+
+###
+
+### Exercício 1
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+	{
+	"name": "Astro Dev",
+	"nickname": "astrodev",
+	"email": "astro@dev.com"
+	}
+}
+
+
+PUT http://localhost:3003/users/edit/001
+Content-Type: application/json
+
+{
+    "name": "Jonas",
+    "nickname": "Jojo"
+}
+
+###
+
+POST http://localhost:3003/users/add
+Content-Type: application/json
+
+{
+	"title": "Criar banco dos alunos",
+	"description": "Devemos criar o banco dos alunos para o módulo do backend",
+	"limitDate": "04/05/2020",
+	"creatorUserId": "001"
+}
+
+###
+
+GET http://localhost:3003/tasks/1661548663305
+
+###
+
+GET http://localhost:3003/users/all
+
+### Exercício 7
+GET http://localhost:3003/tasks?creatorUserId=001
+
+### Exercício 8
+GET http://localhost:3003/users?query=jojo
+
+### Exercício 9
+POST http://localhost:3003/tasks/responsible
+Content-Type: application/json
+
+{
+	"task_id": "1661548663305",
+	"responsible_user_id": "001"
+}
+
+### Exercício 10
+
+GET http://localhost:3003/tasks/1661548663305/responsible
+
+### Exercício 11
+GET http://localhost:3003/tasks/:123/responsiblesTask
+
+### Exercício 12
+
+PUT http://localhost:3003/task/status/123
+Content-Type: application/json
+
+{
+	"status": "Doing"
+}
+
+### Exercício 13
+
+GET http://localhost:3003/task/search?status=to-do
+
+### Exercício 15
+
+DELETE http://localhost:3003/tasks/1661548663305/responsible/002
+
+
+### Exercício 16
+POST http://localhost:3003/tasks/responsible
+Content-Type: application/json
+
+{
+	"task_id": "123",
+	"responsible_user_ids": ["001"]
+}
+
+### Exercício 17
+GET http://localhost:3003/tasks?query=banco
+
+### Exercício 18
+
+PUT http://localhost:3003/task/status/edit
+Content-Type: application/json
+
+{
+	{
+	"task_ids": ["001"],
+	"status": "done"
+	}
+}
+
+### Exercício 19
+
+DELETE http://localhost:3003/task/123
+
+### Exercício 20
+DELETE http://localhost:3003/user/002
