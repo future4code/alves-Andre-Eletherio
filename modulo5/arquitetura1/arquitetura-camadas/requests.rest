@@ -1,0 +1,23 @@
+### Create user
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Deletar",
+    "email": "del@gmail.com",
+    "password": "deletar"
+}
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "kali@gmail.com",
+    "password": "nomoremasters"
+}
+### Get users
+GET http://localhost:3003/users?page=1&itemsPage=1&order=adc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM2OTExMTEsImV4cCI6MTY2MzY5NDcxMX0.j0F9XKlrx4vOeavuAMIqdvWPgDJ9QvXYowyi31Df9ag
+### Delete user
+DELETE http://localhost:3003/users/0efa9c1c-8b39-40d3-9a25-5bbe13746c2a
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM2OTExMTEsImV4cCI6MTY2MzY5NDcxMX0.j0F9XKlrx4vOeavuAMIqdvWPgDJ9QvXYowyi31Df9ag
