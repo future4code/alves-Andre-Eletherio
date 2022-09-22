@@ -3,6 +3,13 @@ import { UserBusiness } from "../business/UserBusiness";
 import { IDeleteUserInputDTO, IEditUserInputDTO, IGetUsersInputDTO, ILoginInputDTO, ISignUpInputDTO } from "../model/User";
 
 export class UserController {
+    private userBusiness: UserBusiness;
+    constructor(
+        userBusiness: UserBusiness
+    ) {
+        this.userBusiness = userBusiness;
+    }
+
     public signup = async (req: Request, res: Response) => {
         try {
             const input: ISignUpInputDTO = {
@@ -11,8 +18,7 @@ export class UserController {
                 password: req.body.password
             };
 
-            const userBusiness = new UserBusiness();
-            const response = await userBusiness.signUp(input);
+            const response = await this.userBusiness.signUp(input);
 
             res.status(201).send(response);
         } catch (error: any) {
@@ -27,8 +33,7 @@ export class UserController {
                 password: req.body.password
             }
 
-            const userBusiness = new UserBusiness();
-            const response = await userBusiness.login(input)
+            const response = await this.userBusiness.login(input)
 
             res.send(response);
         } catch (error: any) {
@@ -46,8 +51,7 @@ export class UserController {
                 order: req.query.order as string
             }
 
-            const userBusiness = new UserBusiness();
-            const response = await userBusiness.getUsers(input);
+            const response = await this.userBusiness.getUsers(input);
 
             res.send(response);
         } catch (error: any) {
@@ -63,8 +67,7 @@ export class UserController {
             }
 
 
-            const userBusiness = new UserBusiness();
-            const response = await userBusiness.deleteUser(input);
+            const response = await this.userBusiness.deleteUser(input);
 
             res.send(response);
         } catch (error: any) {
@@ -75,7 +78,7 @@ export class UserController {
     public editUser = async (req: Request, res: Response) => {
         try {
             const token = req.headers.authorization as string;
-            const {name, email, password} = req.body;
+            const { name, email, password } = req.body;
             const id = req.query.id as string;
 
             const input: IEditUserInputDTO = {
@@ -86,12 +89,11 @@ export class UserController {
                 password
             }
 
-            const userBusiness = new UserBusiness();
-            const response = await userBusiness.edit(input);
+            const response = await this.userBusiness.edit(input);
 
             res.send(response);
         } catch (error: any) {
-            res.status(res.statusCode || 500).send({ message: error.message });           
+            res.status(res.statusCode || 500).send({ message: error.message });
         }
     }
 }

@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { UserController } from './controller/UserController'
+import { userRouter } from './router/userRouter'
 // import dotenv from 'dotenv'
 // está dando erro na importação do dotenv
 // dotenv.config()
@@ -13,9 +14,4 @@ app.listen(process.env.PORT || 3003, () => {
     console.log(`Server running in port:${process.env.PORT || 3003}`)
 })
 
-const userController = new UserController();
-app.post("/users/signup", userController.signup);
-app.post("/users/login", userController.login);
-app.get("/users", userController.getUsers);
-app.delete("/users/:id", userController.deleteUser);
-app.put("/users", userController.editUser);
+app.use("/users", userRouter);

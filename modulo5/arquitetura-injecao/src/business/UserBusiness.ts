@@ -5,6 +5,22 @@ import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 
 export class UserBusiness {
+    private userDatabase: UserDatabase;
+    private idGenerator: IdGenerator;
+    private hashManager: HashManager;
+    private authenticator: Authenticator;
+    constructor(
+        userDatabase: UserDatabase,
+        idGenerator: IdGenerator,
+        hashManager: HashManager,
+        authenticator: Authenticator
+    ) {
+        this.userDatabase = userDatabase;
+        this.idGenerator = idGenerator;
+        this.hashManager = hashManager;
+        this.authenticator = authenticator;
+    }
+
     public signUp = async (input: ISignUpInputDTO) => {
         const { name, email, password } = input;
 
@@ -22,8 +38,7 @@ export class UserBusiness {
             throw new Error("Invalid e-mail")
         }
 
-        const userDatabase1 = new UserDatabase();
-        const emailExists = await userDatabase1.findByEmail(email);
+        const emailExists = await this.userDatabase.findByEmail(email);
         if (emailExists) {
             throw new Error("Email already exists")
         }
@@ -32,20 +47,16 @@ export class UserBusiness {
             throw new Error("Invalid password")
         }
 
-        const idGenerator = new IdGenerator();
-        const id = idGenerator.generate();
+        const id = this.idGenerator.generate();
 
-        const hashManager = new HashManager();
-        const hashPassword = await hashManager.hash(password)
+        const hashPassword = await this.hashManager.hash(password)
 
         const user = new User(id, name, email, hashPassword, USER_ROLES.NORMAL);
 
-        const userDatabase = new UserDatabase();
-        await userDatabase.createUser(user);
+        await this.userDatabase.createUser(user);
 
         const payload: ITokenPayload = { id: user.getId(), role: user.getRole() };
-        const authenticator = new Authenticator();
-        const token = authenticator.generateToken(payload);
+        const token = this.authenticator.generateToken(payload);
 
         const response: ISignUpOutputDTO = {
             message: "Sign up completed!",
@@ -80,8 +91,7 @@ export class UserBusiness {
             throw new Error("Invalid password")
         }
 
-        const userDatabase = new UserDatabase();
-        const user: User = await userDatabase.findByEmail(email);
+        const user: User = await this.userDatabase.findByEmail(email);
 
         if (!user) {
             throw new Error("User not found");
@@ -96,8 +106,7 @@ export class UserBusiness {
         // )
         //  Caso não tivesse transformado antes de retornar "user" com "toUserModel"
 
-        const hashManager = new HashManager();
-        const isPasswordCorrect = await hashManager.compare(password, user.getPassword());
+        const isPasswordCorrect = await this.hashManager.compare(password, user.getPassword());
 
         if (!isPasswordCorrect) {
             throw new Error("Wrong passowrd");
@@ -105,8 +114,7 @@ export class UserBusiness {
 
         const payload: ITokenPayload = { id: user.getId(), role: user.getRole() };
 
-        const authenticator = new Authenticator();
-        const token = authenticator.generateToken(payload);
+        const token = this.authenticator.generateToken(payload);
 
         const response = { token };
         return response;
@@ -125,8 +133,7 @@ export class UserBusiness {
             throw new Error("Missing token")
         }
 
-        const authenticator = new Authenticator();
-        const isTokenValid = authenticator.getTokenPayload(token);
+        const isTokenValid = this.authenticator.getTokenPayload(token);
 
         if (!isTokenValid) {
             throw new Error("Invalid token!");
@@ -139,8 +146,7 @@ export class UserBusiness {
             offset
         };
 
-        const userData = new UserDatabase();
-        const users = await userData.getUsers(getUsersInputDB);
+        const users = await this.userDatabase.getUsers(getUsersInputDB);
 
         const response = users;
         return response;
@@ -153,8 +159,7 @@ export class UserBusiness {
             throw new Error("Missing id");
         }
 
-        const userDatabase = new UserDatabase();
-        const idExists = await userDatabase.findById(id);
+        const idExists = await this.userDatabase.findById(id);
 
         if (!idExists) {
             throw new Error("Id not found");
@@ -164,8 +169,7 @@ export class UserBusiness {
             throw new Error("Missing token");
         }
 
-        const authenticator = new Authenticator();
-        const user = authenticator.getTokenPayload(token);
+        const user = this.authenticator.getTokenPayload(token);
 
         if (!user) {
             throw new Error("Invalid  or missing token");
@@ -179,7 +183,7 @@ export class UserBusiness {
             throw new Error("User cannot delete itself!");
         }
 
-        const response = await userDatabase.deleteUser(id);
+        const response = await this.userDatabase.deleteUser(id);
         return response;
     }
 
@@ -190,8 +194,7 @@ export class UserBusiness {
             throw new Error("Missing token");
         }
 
-        const authenticator = new Authenticator();
-        const tokenUser = authenticator.getTokenPayload(token);
+        const tokenUser = this.authenticator.getTokenPayload(token);
 
         if(!tokenUser){
             throw new Error("Invalid token");
@@ -203,14 +206,26 @@ export class UserBusiness {
             throw new Error("Only admins can edit other users");
         }
         
-        const userDatabase = new UserDatabase();
-        const user: User = await userDatabase.findById(id);
+        const user: User = await this.userDatabase.findById(id);
         
         const name = input.name || user.getName();
         const email = input.email || user.getEmail();
 
-        const hashManager = new HashManager();
-        const password = input.password ? await hashManager.hash(input.password) : user.getPassword();
+        if (email.length < 3 || !email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
+            throw new Error("Invalid e-mail");
+        }
+
+        let password = input.password;
+
+        if (password?.length < 6){
+            throw new Error("Invalid password length");
+        }
+
+        if (!password){
+            password = user.getPassword();
+        } else {
+            password = await this.hashManager.hash(input.password);
+        }
 
         const inputDB: IEditUserInputDBDTO = {
             id,
@@ -219,7 +234,7 @@ export class UserBusiness {
             password
         }
 
-        const response = await userDatabase.editUser(inputDB);
+        const response = await this.userDatabase.editUser(inputDB);
         return response;
     }
 }
