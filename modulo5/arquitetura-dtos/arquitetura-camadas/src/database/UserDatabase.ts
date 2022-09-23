@@ -27,18 +27,25 @@ export class UserDatabase extends BaseDatabase {
     }
 
     public getUsers = async (input: any) => {
-        const {name, actualPage, itemsPerPage, sortOrder} = input;
-        const usersDB: IUserDB[] = await BaseDatabase.connection(UserDatabase.TABLE_USERS).select().where("name", "like", `%${name}%`).orderBy("name", sortOrder).limit(+itemsPerPage).offset(+actualPage - 1);
+        const {search, order, limit, offset} = input;
+        const usersDB: IUserDB[] = await BaseDatabase.connection(UserDatabase.TABLE_USERS).select().where("name", "like", `%${search}%`).orderBy("name", order).limit(limit).offset(offset);
         return usersDB;
     }
     
     public findById = async (id: string) => {
         const user = await BaseDatabase.connection(UserDatabase.TABLE_USERS).select().where({id});
-        return user[0];
+        return user[0] && User.toUserModel(user[0]);
     }
 
     public deleteUser = async (id: string) => {
         await BaseDatabase.connection(UserDatabase.TABLE_USERS).delete().where({id});
         return `User ${id} deleted`;
+    }
+
+    public editUser = async (input: any) => {
+        const {id, name, email, password} = input;
+
+        await BaseDatabase.connection(UserDatabase.TABLE_USERS).update({name, email, password}).where({id});
+        return "User edited!";
     }
 }

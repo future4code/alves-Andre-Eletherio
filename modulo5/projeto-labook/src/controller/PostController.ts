@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PostBusiness } from "../business/PostBusiness";
-import { ICreatePostInputDTO, IDeletePostInputDTO } from "../model/Post";
+import { ICreatePostInputDTO, IDeletePostInputDTO, ILikePostInputDTO, IRemoveLikeInputDTO } from "../model/Post";
 
 export class PostController {
     private postBusiness: PostBusiness;
@@ -45,9 +45,39 @@ export class PostController {
                 token: req.headers.authorization as string
             }
 
-            await this.postBusiness.deletePost(input);
+            const response = await this.postBusiness.deletePost(input);
+            res.send(response);
         } catch (error: any) {
             res.status(res.statusCode).send({ message: error.message });
+        }
+    }
+
+    public like = async (req: Request, res: Response) => {
+        try {
+            const input: ILikePostInputDTO = {
+                id: req.params.id,
+                token: req.headers.authorization as string
+            }
+
+            const response = await this.postBusiness.like(input);
+            res.send(response);
+
+        } catch (error: any) {
+            res.status(res.statusCode).send({message: error.message});
+        }
+    }
+
+    public removeLike = async (req: Request, res: Response) => {
+        try {
+            const input: IRemoveLikeInputDTO = {
+                id: req.params.id,
+                token: req.headers.authorization as string
+            }
+
+            const response = await this.postBusiness.removeLike(input);
+            res.send(response);
+        } catch (error: any) {
+            res.status(res.statusCode).send({message: error.message});
         }
     }
 }

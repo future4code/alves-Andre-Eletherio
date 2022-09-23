@@ -1,7 +1,7 @@
 import { PostDatabase } from "../database/PostDatabase";
-import { ICreatePostInputDTO, ICreatPostInputDBDTO, IDeletePostInputDTO, IPostDB, Post } from "../model/Post";
+import { ICreatePostInputDTO, ICreatPostInputDBDTO, IDeletePostInputDTO, ILikePostInputDBDTO, ILikePostInputDTO, ILikePostLikeInputDBDTO, IPostDB, IPostLike, IRemoveLikeInputDBDTO, IRemoveLikeInputDTO, Post } from "../model/Post";
 import { USER_ROLES } from "../model/User";
-import { Authenticator } from "../services/Authenticator";
+import { Authenticator, ITokenPayload } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 
 export class PostBusiness {
@@ -12,7 +12,7 @@ export class PostBusiness {
         authenticator: Authenticator,
         idGenerator: IdGenerator,
         postDatabase: PostDatabase
-    ){
+    ) {
         this.authenticator = authenticator;
         this.idGenerator = idGenerator;
         this.postDatabase = postDatabase;
@@ -31,7 +31,7 @@ export class PostBusiness {
 
         const user = this.authenticator.getTokenPayload(token);
 
-        if (!user){
+        if (!user) {
             throw new Error("Invalid token");
         }
 
@@ -52,12 +52,12 @@ export class PostBusiness {
     }
 
     public getPosts = async (token: string) => {
-        if (!token){
+        if (!token) {
             throw new Error("Missing token");
         }
 
         const user = this.authenticator.getTokenPayload(token);
-        if (!user){
+        if (!user) {
             throw new Error("Invalid token");
         }
 
@@ -67,7 +67,7 @@ export class PostBusiness {
     }
 
     public deletePost = async (input: IDeletePostInputDTO) => {
-        const {id, token} = input;
+        const { id, token } = input;
 
         if (!id || !token) {
             throw new Error("Missing field(s)");
@@ -75,20 +75,95 @@ export class PostBusiness {
 
         const payload = this.authenticator.getTokenPayload(token);
 
-        if (!payload){
+        if (!payload) {
             throw new Error("Invalid token");
         }
 
         const post: IPostDB = await this.postDatabase.findById(id);
-        console.log(post);
 
-        if (!post){
+        if (!post) {
             throw new Error("Post not found");
         }
 
-        if (post.user_id !== payload.id && payload.role !== USER_ROLES.ADMIN){
+        if (post.user_id !== payload.id && payload.role !== USER_ROLES.ADMIN) {
             throw new Error("Only admins can delete other users posts");
         }
-        // verificando se um usuário pode ou não deletar o post com base no seu id
+
+        const response = await this.postDatabase.deleteById(id);
+        return response;
+    }
+
+    public like = async (input: ILikePostInputDTO) => {
+        const { id, token } = input;
+
+        if (!id || !token) {
+            throw new Error("Missing field(s)");
+        }
+
+        const postExists: IPostDB = await this.postDatabase.findById(id);
+
+        if (!postExists) {
+            throw new Error("Post not found");
+        }
+
+        const payload = this.authenticator.getTokenPayload(token);
+
+        if (!payload) {
+            throw new Error("Invalid token");
+        }
+
+        const inputDB: ILikePostInputDBDTO = {
+            post_id: id,
+            user_id: payload.id
+        }
+
+        const isLiked = await this.postDatabase.isLiked(inputDB);
+        if (isLiked) {
+            throw new Error("Post already liked");
+        }
+
+        const post_id: string = this.idGenerator.generate();
+
+        const likeInputDB: ILikePostLikeInputDBDTO = {
+            id: post_id,
+            post_id: id,
+            user_id: payload.id
+        }
+
+        const response = await this.postDatabase.like(likeInputDB);
+        return response;
+    }
+
+    public removeLike = async (input: IRemoveLikeInputDTO) => {
+        const {id ,token} = input;
+
+        if (!id || !token) {
+            throw new Error("Missing field(s)");
+        }
+
+        const postExists: IPostDB = await this.postDatabase.findById(id);
+
+        if (!postExists) {
+            throw new Error("Post not found");
+        }
+
+        const payload = this.authenticator.getTokenPayload(token);
+
+        if (!payload) {
+            throw new Error("Invalid token");
+        }
+        // 
+        const inputDB: IRemoveLikeInputDBDTO = {
+            post_id: id,
+            user_id: payload.id
+        }
+
+        const post: IPostLike = await this.postDatabase.isLiked(inputDB);
+        if (!post) {
+            throw new Error("Post not liked");
+        }
+        
+        const response = await this.postDatabase.removeLike(post);
+        return response;
     }
 }

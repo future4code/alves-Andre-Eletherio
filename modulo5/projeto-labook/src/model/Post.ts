@@ -1,6 +1,6 @@
 export class Post {
     private id: string;
-    private content : string;
+    private content: string;
     private user_id: string;
     private likes: number;
     constructor(
@@ -8,7 +8,7 @@ export class Post {
         content: string,
         user_id: string,
         likes: number,
-    ){
+    ) {
         this.id = id;
         this.content = content;
         this.user_id = user_id;
@@ -53,4 +53,38 @@ export interface IPostDB {
 export interface IDeletePostInputDTO {
     id: string,
     token: string
+}
+
+export interface ILikePostInputDTO {
+    id: string,
+    token: string
+}
+
+export interface ILikePostInputDBDTO {
+    post_id: string,
+    user_id: string
+}
+
+export interface ILikePostLikeInputDBDTO {
+    id: string,
+    post_id: string,
+    user_id: string
+}
+
+export interface IRemoveLikeInputDTO {
+    id: string,
+    token: string
+}
+
+export interface IRemoveLikeInputDBDTO {
+    post_id: string,
+    user_id: string
+}
+
+// export interface IRemoveLikeInput
+
+export interface IPostLike {
+    id: string,
+    post_id: string,
+    user_id: string
 }

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "name": "Shen",
-    "email": "kali@gmail.com",
+    "email": "shen@gmail.com",
     "password": "nomoremasters"
 }
 ### Login
@@ -12,43 +12,26 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "kali@gmail.com",
+    "email": "shen@gmail.com",
     "password": "nomoremasters"
 }
 ### Create post
 POST http://localhost:3003/posts
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4ODQ2MDIsImV4cCI6MTY2Mzg4ODIwMn0.14kbLD5izJItihCZIXXzASdjUHUUcQX64TJ74A2OpLA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEwN2ZhNjViLWQyZjUtNGYxNi1hYjdiLTY3NWUzMjZmZTZmMiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM5MzIxNzgsImV4cCI6MTY2MzkzNTc3OH0.ubuAA4GtcGNGqKztON0H_98cNGw81_oH1SBFlAx8ybY
 Content-Type: application/json
 
 {
-    "content": "Testando"
+    "content": "Shen Post"
 }
 ### Get posts
 GET http://localhost:3003/posts
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4ODQ2MDIsImV4cCI6MTY2Mzg4ODIwMn0.14kbLD5izJItihCZIXXzASdjUHUUcQX64TJ74A2OpLA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM5MzE1NjAsImV4cCI6MTY2MzkzNTE2MH0.NLQmTvdvBuJSR2djmKJoqZVT3CbEh3nypxYjM_pc8x8
 ### Delete post
-DELETE http://localhost:3003/posts/7d259986-c33d-41de-acb9-79828d8b6114
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4ODQ2MDIsImV4cCI6MTY2Mzg4ODIwMn0.14kbLD5izJItihCZIXXzASdjUHUUcQX64TJ74A2OpLA
-
-
-
-
-
-
-
-
-
-### Get users
-GET http://localhost:3003/users?page=1&itemsPage=1&order=adc
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4YmI4ZGZkLTJjYjYtNGExOS04M2Y4LTQzMzAxNGZlMWZmYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4MTY3NTksImV4cCI6MTY2MzgyMDM1OX0.vtkELWm0p8LTWMM3_UoYWZ747YjG0QwykmLn5jaL9ds
-### Delete user
-DELETE http://localhost:3003/users/38bb8dfd-2cb6-4a19-83f8-433014fe1ffc
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzgxNzMyMywiZXhwIjoxNjYzODIwOTIzfQ.MdtB8oytnCZqTshN789Vmvh8sHD67goVVgxy8HMYGIk
-### Edit user
-PUT http://localhost:3003/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4YmI4ZGZkLTJjYjYtNGExOS04M2Y4LTQzMzAxNGZlMWZmYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4MTY3NTksImV4cCI6MTY2MzgyMDM1OX0.vtkELWm0p8LTWMM3_UoYWZ747YjG0QwykmLn5jaL9ds
-Content-Type: application/json
-
-{
-    "name": "Deletar"
-}
+DELETE http://localhost:3003/posts/96b1df92-8e14-4023-99d6-82dcc533dce4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzkzMjIzMSwiZXhwIjoxNjYzOTM1ODMxfQ.NOn5PC5e_WhwJJQvlmopmBYWSU9kfa33g4nUzuzwxmY
+### Like
+POST http://localhost:3003/posts/like/7d259986-c33d-41de-acb9-79828d8b6114
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImEwN2ZhNjViLWQyZjUtNGYxNi1hYjdiLTY3NWUzMjZmZTZmMiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM5MzYzNTUsImV4cCI6MTY2MzkzOTk1NX0.npjGgCRLayzP3xYDsb3cuUyVFhKYVrBOv_WgZqSpiAE
+### Remove like
+DELETE http://localhost:3003/posts/remove-like/7d259986-c33d-41de-acb9-79828d8b6114
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzkzNTc3NSwiZXhwIjoxNjYzOTM5Mzc1fQ.110G8en_40MykOEmr32_u8dNbNBqiaT7JkXSNVCHx18
