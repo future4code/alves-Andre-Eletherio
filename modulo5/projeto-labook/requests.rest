@@ -1,0 +1,54 @@
+### Create user
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Shen",
+    "email": "kali@gmail.com",
+    "password": "nomoremasters"
+}
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "kali@gmail.com",
+    "password": "nomoremasters"
+}
+### Create post
+POST http://localhost:3003/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4ODQ2MDIsImV4cCI6MTY2Mzg4ODIwMn0.14kbLD5izJItihCZIXXzASdjUHUUcQX64TJ74A2OpLA
+Content-Type: application/json
+
+{
+    "content": "Testando"
+}
+### Get posts
+GET http://localhost:3003/posts
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4ODQ2MDIsImV4cCI6MTY2Mzg4ODIwMn0.14kbLD5izJItihCZIXXzASdjUHUUcQX64TJ74A2OpLA
+### Delete post
+DELETE http://localhost:3003/posts/7d259986-c33d-41de-acb9-79828d8b6114
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzMTNmOGExLThmNzQtNDE5ZC1iNjJmLWZlNGM1NjZkYWY2MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4ODQ2MDIsImV4cCI6MTY2Mzg4ODIwMn0.14kbLD5izJItihCZIXXzASdjUHUUcQX64TJ74A2OpLA
+
+
+
+
+
+
+
+
+
+### Get users
+GET http://localhost:3003/users?page=1&itemsPage=1&order=adc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4YmI4ZGZkLTJjYjYtNGExOS04M2Y4LTQzMzAxNGZlMWZmYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4MTY3NTksImV4cCI6MTY2MzgyMDM1OX0.vtkELWm0p8LTWMM3_UoYWZ747YjG0QwykmLn5jaL9ds
+### Delete user
+DELETE http://localhost:3003/users/38bb8dfd-2cb6-4a19-83f8-433014fe1ffc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzgxNzMyMywiZXhwIjoxNjYzODIwOTIzfQ.MdtB8oytnCZqTshN789Vmvh8sHD67goVVgxy8HMYGIk
+### Edit user
+PUT http://localhost:3003/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4YmI4ZGZkLTJjYjYtNGExOS04M2Y4LTQzMzAxNGZlMWZmYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4MTY3NTksImV4cCI6MTY2MzgyMDM1OX0.vtkELWm0p8LTWMM3_UoYWZ747YjG0QwykmLn5jaL9ds
+Content-Type: application/json
+
+{
+    "name": "Deletar"
+}
