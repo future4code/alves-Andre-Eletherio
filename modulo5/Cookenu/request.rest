@@ -1,0 +1,41 @@
+### SignUp
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+    "name": "Escorpion",
+    "email": "escorpion@gmail.com",
+    "password": "getoverhere"
+}
+### Login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "kali@gmail.com",
+    "password": "nomoremasters"
+}
+### Ver informações do próprio perfil
+GET http://localhost:3003/user/profile
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlMDZkYTY3LTBlNmYtNGVhYy1hYWRhLWU5YzczZTQyMTQ2ZSIsImlhdCI6MTY2MzUzODg4OCwiZXhwIjoxNjYzNTQyNDg4fQ.qV5Sxc-vSTQnWfxNu7B2Z8c3HkfdDGuSsbwmOJo1hZU
+### Informações de outros perfis
+GET http://localhost:3003/user/ee06da67-0e6f-4eac-aada-e9c73e42146e
+### Create recipe
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlMDZkYTY3LTBlNmYtNGVhYy1hYWRhLWU5YzczZTQyMTQ2ZSIsImlhdCI6MTY2MzU0MDQ1MiwiZXhwIjoxNjYzNTQ0MDUyfQ._OLvY4wudcSd0GcWFbGJUMfiXh2YAKeR9cWwAQb_tAk
+
+{
+    "title": "Bolo de Chocolate",
+    "description": "O bolo de chocolate preferido do mestre zed",
+    "preparation_mode": "Busca no youtube"
+}
+### Search recipe by id
+GET http://localhost:3003/recipe/1
+### Follow
+POST http://localhost:3003/follow/2d6ff822-2de1-458d-814f-afeaad1b5d04
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVlMDZkYTY3LTBlNmYtNGVhYy1hYWRhLWU5YzczZTQyMTQ2ZSIsImlhdCI6MTY2MzM2MzEwOCwiZXhwIjoxNjYzMzY2NzA4fQ.jkcooI5jIkfGsj92I9Mxtz-6ai4_X9KHCQ8rBvdI1DY
+### Followees Recipes
+GET http://localhost:3003/followeesRecipes
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJkNmZmODIyLTJkZTEtNDU4ZC04MTRmLWFmZWFhZDFiNWQwNCIsImlhdCI6MTY2MzM2MzY5NCwiZXhwIjoxNjYzMzY3Mjk0fQ.dLPlcsigLA_lVlz258q0eQYJ7Ua94U_T7KchTIYxFok
