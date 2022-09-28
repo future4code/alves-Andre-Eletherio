@@ -3,9 +3,9 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Kayn",
-    "email": "kayn@gmail.com",
-    "password": "mestrezed"
+    "name": "Teste",
+    "email": "teste@gmail.com",
+    "password": "testando"
 }
 ### Login
 POST http://localhost:3003/users/login
@@ -17,16 +17,15 @@ Content-Type: application/json
 }
 ### Get users
 GET http://localhost:3003/users?page=1&itemsPage=1&order=adc
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM2OTExMTEsImV4cCI6MTY2MzY5NDcxMX0.j0F9XKlrx4vOeavuAMIqdvWPgDJ9QvXYowyi31Df9ag
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4YmI4ZGZkLTJjYjYtNGExOS04M2Y4LTQzMzAxNGZlMWZmYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4MTY3NTksImV4cCI6MTY2MzgyMDM1OX0.vtkELWm0p8LTWMM3_UoYWZ747YjG0QwykmLn5jaL9ds
 ### Delete user
-DELETE http://localhost:3003/users/0efa9c1c-8b39-40d3-9a25-5bbe13746c2a
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM2OTExMTEsImV4cCI6MTY2MzY5NDcxMX0.j0F9XKlrx4vOeavuAMIqdvWPgDJ9QvXYowyi31Df9ag
+DELETE http://localhost:3003/users/38bb8dfd-2cb6-4a19-83f8-433014fe1ffc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzgxNzMyMywiZXhwIjoxNjYzODIwOTIzfQ.MdtB8oytnCZqTshN789Vmvh8sHD67goVVgxy8HMYGIk
 ### Edit user
-PUT http://localhost:3003/users?id=3ee44b9f-f2ce-4c25-b6d5-faa42555edf5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBlZmE5YzFjLThiMzktNDBkMy05YTI1LTViYmUxMzc0NmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2Mzc4MjMzMywiZXhwIjoxNjYzNzg1OTMzfQ.HIrY9IskMYJcVb4DXSPW7H-fY2JDRkxlQ19PtuJG-pc
+PUT http://localhost:3003/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM4YmI4ZGZkLTJjYjYtNGExOS04M2Y4LTQzMzAxNGZlMWZmYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4MTY3NTksImV4cCI6MTY2MzgyMDM1OX0.vtkELWm0p8LTWMM3_UoYWZ747YjG0QwykmLn5jaL9ds
 Content-Type: application/json
 
 {
-    "name": "Zed",
-    "password": "segredosguardados"
+    "name": "Deletar"
 }

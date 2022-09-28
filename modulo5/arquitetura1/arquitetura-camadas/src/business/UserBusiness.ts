@@ -8,23 +8,27 @@ export class UserBusiness {
     public signUp = async (input: any) => {
         const { name, email, password } = input;
 
+        if (!name || !email || !password) {
+            throw new Error("Missing field(s)");
+        }
+
         // verifica se name é passado, e se ele é uma string
-        if (!name || typeof (name) !== "string" || name?.length < 3) {
+        if (typeof (name) !== "string" || name.length < 3) {
             throw new Error("Invalid name")
         }
 
 
-        if (!email || typeof (email) !== "string") {
+        if (typeof (email) !== "string" || email.length < 3) {
             throw new Error("Invalid e-mail")
         }
 
         const userDatabase1 = new UserDatabase();
-        const emailExists = await userDatabase1.searchUserByEmail(email);
+        const emailExists = await userDatabase1.findByEmail(email);
         if (emailExists) {
             throw new Error("Email already exists")
         }
 
-        if (!password || password?.length < 6 || typeof (password) !== "string") {
+        if (password.length < 6 || typeof (password) !== "string") {
             throw new Error("Invalid password")
         }
 
@@ -51,22 +55,40 @@ export class UserBusiness {
     public login = async (input: any) => {
         const { email, password } = input;
 
-        if (!email || typeof (email) !== "string") {
+        if (!email || !password) {
+            throw new Error("Empty field(s)");
+        }
+
+        if (typeof (email) !== "string" || email?.length < 3) {
             throw new Error("Invalid e-mail");
         }
 
-        if (!password || typeof (password) !== "string" || password?.length < 6) {
+        if (!email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+            throw new Error("Parâmetro 'email' inválido")
+        }
+
+        if (typeof (password) !== "string" || password?.length < 6) {
             throw new Error("Invalid password")
         }
 
         const userDatabase = new UserDatabase();
-        const user: User = await userDatabase.searchUserByEmail(email);
+        const user: User = await userDatabase.findByEmail(email);
 
         if (!user) {
             throw new Error("User not found");
         }
 
+        // const userYuzo = new User(
+        //     user.id,
+        //     user.name,
+        //     user.email,
+        //     user.password,
+        //     user.role
+        // )
+        //  Caso não tivesse transformado antes de retornar "user" com "toUserModel"
+
         const payload: ITokenPayload = { id: user.getId(), role: user.getRole() };
+
         const authenticator = new Authenticator();
         const token = authenticator.generateToken(payload);
 
@@ -81,8 +103,10 @@ export class UserBusiness {
         return response;
     }
 
-    public getAllUsers = async (token: any, search: any, page: any, itemsPage: any, order: any) => {
-        if (!token || typeof(token) !== "string") {
+    public getAllUsers = async (input: any) => {
+        const { token, search, page, itemsPage, order } = input;
+
+        if (!token || typeof (token) !== "string") {
             throw new Error("Invalid token")
         }
 
@@ -91,19 +115,19 @@ export class UserBusiness {
         let itemsPerPage = itemsPage;
         let sortOrder = order;
 
-        if (!name || typeof(name) !== "string") {
+        if (!name || typeof (name) !== "string") {
             name = "";
         }
 
-        if(!page) {
+        if (!page) {
             actualPage = 1;
         }
 
-        if(!itemsPage) {
+        if (!itemsPage) {
             itemsPerPage = 1
         }
 
-        if (!order || order !== "asc" && order !== "desc"){
+        if (!order || order !== "asc" && order !== "desc") {
             sortOrder = "asc"
         }
 
@@ -114,22 +138,31 @@ export class UserBusiness {
             throw new Error("Invalid token!");
         }
 
+        const getUsersInputDB: any = {
+            name,
+            actualPage,
+            itemsPerPage,
+            sortOrder
+        };
+
         const userData = new UserDatabase();
-        const users = await userData.getUsers(name, actualPage, itemsPerPage, sortOrder);
+        const users = await userData.getUsers(getUsersInputDB);
 
         const response = users;
         return response;
     }
 
-    public deleteUser = async (id: string, token: any) => {
+    public deleteUser = async (input: any) => {
+        const {id, token} = input;
+
         if (!id) {
             throw new Error("Missing id");
         }
 
         const userDatabase = new UserDatabase();
-        const idExists = await userDatabase.searchUserById(id);
+        const idExists = await userDatabase.findById(id);
 
-        if (!idExists){
+        if (!idExists) {
             throw new Error("Id not found");
         }
 
@@ -138,14 +171,14 @@ export class UserBusiness {
         }
 
         const authenticator = new Authenticator();
-        const user =  authenticator.getTokenPayload(token);
+        const user = authenticator.getTokenPayload(token);
         console.log(user?.role);
-        
-        if (user?.role !== "ADMIN"){
+
+        if (user?.role !== "ADMIN") {
             throw new Error("Only admins can delete a user");
         }
 
-        if(user?.id == id) {
+        if (user?.id == id) {
             throw new Error("User cannot delete itself!");
         }
 
