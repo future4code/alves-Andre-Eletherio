@@ -12,8 +12,8 @@ POST http://localhost:3003/users/Login
 Content-Type: application/json
 
 {
-    "email": "shen@gmail.com",
-    "password": "equilibrio"
+    "email": "kali@gmail.com",
+    "password": "nomoremasters"
 }
 ### Create show
 POST http://localhost:3003/shows/create
@@ -28,4 +28,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzYzZlOTBhLWZiZDgt
 GET http://localhost:3003/shows
 ### Purchase ticket
 POST http://localhost:3003/shows/purchase/b6e2b0e8-ccaf-40d3-819e-cfcacd1a33f3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhZmMyNWI3LTgyMDEtNGM0OC1iYmYzLTFlZGQ4OWMyMTMxYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjQ1OTA0NTMsImV4cCI6MTY2NDU5NDA1M30.Km5MazbXWRtcaym1eagywG-r_3kcJ9PX_xGfZDkbLdE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzYzZlOTBhLWZiZDgtNDhkNC05ODQ3LWQ2Zjk1NDY2ZDcwNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2NDY4NTY0MCwiZXhwIjoxNjY0Njg5MjQwfQ.wJId70q3z3PMOPXXTwfn4Py3tMPKoaZe6-XSclF3B9Q
+### Deelete tickets
+DELETE http://localhost:3003/shows/delete/dcb8bed0-b1cf-42f5-8f91-73bd4acdc042
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzYzZlOTBhLWZiZDgtNDhkNC05ODQ3LWQ2Zjk1NDY2ZDcwNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2NDY0NTcxOCwiZXhwIjoxNjY0NjQ5MzE4fQ._nn6rQV_XteIp5-eJFHpXW0lhBiZjO70fohcTw6OyTU

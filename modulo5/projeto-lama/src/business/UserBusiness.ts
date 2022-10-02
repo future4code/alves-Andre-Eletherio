@@ -103,27 +103,27 @@ export class UserBusiness {
             throw new InvalidPassword;
         }
 
-        const user: User = await this.userDatabase.findByEmail(email);
-
+        const user = await this.userDatabase.findByEmail(email);
+        
         if (!user) {
             throw new EmailNotRegistered();
         }
-
-        const isPasswordCorrect = await this.hashManager.compare(password, user.getPassword());
+        
+        const isPasswordCorrect = await this.hashManager.compare(password, user.password);
 
         if (!isPasswordCorrect) {
             throw new WrongPassowrd();
         }
 
         const payload: ITokenPayload = {
-            id: user.getId(),
-            role: user.getRole()
+            id: user.id,
+            role: user.role
         }
 
         const token = this.authenticator.generateToken(payload);
 
         const response: ILoginOutputDTO = {
-            message: `User ${user.getName()} logged in!`,
+            message: `User ${user.name} logged in!`,
             token
         }
 
