@@ -3,7 +3,7 @@ import { BaseDatabase } from "./BaseDatabase";
 
 export class UserDatabase extends BaseDatabase {
 
-    public findByEmail = async (email: string) => {
+    public findByEmail = async (email: string): Promise<IUserDB | undefined> => {
         const userDB = await BaseDatabase.connection("l_users").select().where({ email });
         return userDB[0] && User.toUserModel(userDB[0]);
     }

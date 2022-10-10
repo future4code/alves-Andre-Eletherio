@@ -12,7 +12,7 @@ import { InvalidToken } from "../errors/InvalidToken";
 import { ShowDoesNotExist } from "../errors/ShowDoesNotExist";
 import { TIcketSellAuth } from "../errors/TIcketSellAuth";
 import { TicketsSoldOut } from "../errors/TicketsSoldOut";
-import { ICreateInputDTO, IDeleteTicketInputDTO, IPurchaseInputDBDTO, IPurchaseInputDTO, IShowsDB, ITicketsDB } from "../model/Show";
+import { ICreateInputDTO, IDeleteTicketInputDTO, IPurchaseInputDBDTO, IPurchaseInputDTO, IShowsDB, IShowsWithTickets, ITicketsDB } from "../model/Show";
 import { USER_ROLES } from "../model/User";
 import { Authenticator, ITokenPayload } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
@@ -23,7 +23,7 @@ export class ShowBusiness {
     private idGenerator: IdGenerator;
     constructor(showDatabase: ShowDatabase, authenticator: Authenticator, idGenerator: IdGenerator) {
         this.showDatabase = showDatabase;
-        this.authenticator= authenticator;
+        this.authenticator = authenticator;
         this.idGenerator = idGenerator;
     }
 
@@ -84,17 +84,24 @@ export class ShowBusiness {
     public get = async () => {
         const shows: IShowsDB[] = await this.showDatabase.get();
 
-        return shows;
+        const ok: IShowsWithTickets[] = shows;
+        for (let i = 0; i < ok.length; i++) {
+            const ticketsSold = await this.showDatabase.countTickets(ok[i].id);
+            ok[i].ticketsAvaiable = 500 - +ticketsSold["count(*)"]
+        }
+
+        return ok;
     }
 
+
     public purchase = async (input: IPurchaseInputDTO) => {
-        const {show_id, token} = input;
+        const { show_id, token } = input;
 
         if (!show_id || !token) {
             throw new EmptyField();
         }
 
-        if (typeof(show_id) !== "string") {
+        if (typeof (show_id) !== "string") {
             throw new InvalidShowId();
         }
 
@@ -142,7 +149,7 @@ export class ShowBusiness {
     }
 
     public deleteTicket = async (input: IDeleteTicketInputDTO) => {
-        const {id, token} = input;
+        const { id, token } = input;
 
         if (!id || !token) {
             throw new EmptyField();

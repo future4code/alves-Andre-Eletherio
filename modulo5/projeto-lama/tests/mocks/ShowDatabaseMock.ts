@@ -1,5 +1,5 @@
 import { BaseDatabase } from "../../src/database/BaseDatabase";
-import { IPurchaseInputDBDTO, IShowsDB, ITicketsDB } from "../../src/model/Show";
+import { IPurchaseInputDBDTO, IShowsDB, IShowsWithTickets, ITicketsDB } from "../../src/model/Show";
 
 export class ShowDatabaseMock extends BaseDatabase {
   public static TABLE_SHOWS = "lama_shows";
@@ -19,17 +19,19 @@ export class ShowDatabaseMock extends BaseDatabase {
 
   public create = async (show: IShowsDB): Promise<void> => { }
 
-  public get = async (): Promise<IShowsDB[]> => {
-    const shows: IShowsDB[] = [
+  public get = async (): Promise<IShowsWithTickets[]> => {
+    const shows: IShowsWithTickets[] = [
       {
         "id": "002",
         "band": "Bruno Mars",
-        "starts_at": new Date("2022-12-06T03:00:00.000Z")
+        "starts_at": new Date("2022-12-06T03:00:00.000Z"),
+        "ticketsAvaiable": 0
       },
       {
         "id": "001",
         "band": "Coldplay",
-        "starts_at": new Date("2022-12-05T03:00:00.000Z")
+        "starts_at": new Date("2022-12-05T03:00:00.000Z"),
+        "ticketsAvaiable": 499
       },
     ]
 
