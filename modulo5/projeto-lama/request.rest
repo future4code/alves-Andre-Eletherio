@@ -3,9 +3,9 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Shen",
-    "email": "shen@gmail.com",
-    "password": "equilibrio"
+    "name": "Kennen",
+    "email": "kennen@gmail.com",
+    "password": "shiriken"
 }
 ### Login user
 POST http://localhost:3003/users/Login
@@ -28,4 +28,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzYzZlOTBhLWZiZDgt
 GET http://localhost:3003/shows
 ### Purchase ticket
 POST http://localhost:3003/shows/purchase/b6e2b0e8-ccaf-40d3-819e-cfcacd1a33f3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhZmMyNWI3LTgyMDEtNGM0OC1iYmYzLTFlZGQ4OWMyMTMxYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjQ1OTA0NTMsImV4cCI6MTY2NDU5NDA1M30.Km5MazbXWRtcaym1eagywG-r_3kcJ9PX_xGfZDkbLdE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjExNDg0YzI0LWFiMjAtNDYzZi05ZDcwLTU0ODdlM2E1ZGQwMiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjQ3OTg3OTMsImV4cCI6MTY2NDgwMjM5M30.8X3Vo9UYZZJ7s0XNAKYgRiCPo4rSz5UAsrSeWAtjsfo
+### Deelete tickets
+DELETE http://localhost:3003/shows/delete/dcb8bed0-b1cf-42f5-8f91-73bd4acdc042
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzYzZlOTBhLWZiZDgtNDhkNC05ODQ3LWQ2Zjk1NDY2ZDcwNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2NDY0NTcxOCwiZXhwIjoxNjY0NjQ5MzE4fQ._nn6rQV_XteIp5-eJFHpXW0lhBiZjO70fohcTw6OyTU

@@ -1,7 +1,18 @@
 import { ShowDatabase } from "../database/ShowDatabase";
+import { BuyLimit } from "../errors/BuyLimit";
+import { DateBusy } from "../errors/DateBusy";
 import { EmptyField } from "../errors/EmptyField(s)";
+import { InsufficientPermission } from "../errors/InsufficientPermission";
 import { InvalidBandName } from "../errors/InvalidBandName";
-import { ICreateInputDTO, IPurchaseInputDBDTO, IPurchaseInputDTO, IShowsDB, ITicketsDB } from "../model/Show";
+import { InvalidDateFormat } from "../errors/InvalidDateFortmat";
+import { InvalidDatePeriod } from "../errors/InvalidDatePeriod";
+import { InvalidShowId } from "../errors/InvalidShowId";
+import { InvalidTicket } from "../errors/InvalidTicket";
+import { InvalidToken } from "../errors/InvalidToken";
+import { ShowDoesNotExist } from "../errors/ShowDoesNotExist";
+import { TIcketSellAuth } from "../errors/TIcketSellAuth";
+import { TicketsSoldOut } from "../errors/TicketsSoldOut";
+import { ICreateInputDTO, IDeleteTicketInputDTO, IPurchaseInputDBDTO, IPurchaseInputDTO, IShowsDB, IShowsWithTickets, ITicketsDB } from "../model/Show";
 import { USER_ROLES } from "../model/User";
 import { Authenticator, ITokenPayload } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
@@ -12,7 +23,7 @@ export class ShowBusiness {
     private idGenerator: IdGenerator;
     constructor(showDatabase: ShowDatabase, authenticator: Authenticator, idGenerator: IdGenerator) {
         this.showDatabase = showDatabase;
-        this.authenticator= authenticator;
+        this.authenticator = authenticator;
         this.idGenerator = idGenerator;
     }
 
@@ -30,16 +41,16 @@ export class ShowBusiness {
         const payload = this.authenticator.getTokenPayload(token);
 
         if (!payload) {
-            throw new Error("Invalid token");
+            throw new InvalidToken();
         }
 
         if (payload.role !== USER_ROLES.ADMIN) {
-            throw new Error("Insuficcient permission");
+            throw new InsufficientPermission();
         }
 
         const dateS = starts_at.split("/");
         if (dateS.length < 3) {
-            throw new Error("Invalid Date");
+            throw new InvalidDateFormat();
         }
 
         const date = new Date(`${dateS[2]}/${dateS[1]}/${dateS[0]}`);
@@ -48,13 +59,13 @@ export class ShowBusiness {
         const endDate = new Date("2022/12/11").getTime();
 
         if (date.getTime() < startDate || date.getTime() > endDate) {
-            throw new Error("Invalid show date");
+            throw new InvalidDatePeriod();
         }
 
         const isDateBusy = await this.showDatabase.findByDate(date);
 
         if (isDateBusy) {
-            throw new Error("There already is a show in this day");
+            throw new DateBusy();
         }
 
         const id = this.idGenerator.generate();
@@ -73,30 +84,37 @@ export class ShowBusiness {
     public get = async () => {
         const shows: IShowsDB[] = await this.showDatabase.get();
 
-        return shows;
+        const ok: IShowsWithTickets[] = shows;
+        for (let i = 0; i < ok.length; i++) {
+            const ticketsSold = await this.showDatabase.countTickets(ok[i].id);
+            ok[i].ticketsAvaiable = 500 - +ticketsSold["count(*)"]
+        }
+
+        return ok;
     }
 
+
     public purchase = async (input: IPurchaseInputDTO) => {
-        const {show_id, token} = input;
+        const { show_id, token } = input;
 
         if (!show_id || !token) {
             throw new EmptyField();
         }
 
-        if (typeof(show_id) !== "string") {
-            throw new Error("Invalid show_id");
+        if (typeof (show_id) !== "string") {
+            throw new InvalidShowId();
         }
 
         const payload = this.authenticator.getTokenPayload(token);
 
         if (!payload) {
-            throw new Error("Invalid token");
+            throw new InvalidToken();
         }
 
         const showExists = await this.showDatabase.findShowById(show_id);
 
         if (!showExists) {
-            throw new Error("Show id does not exist");
+            throw new ShowDoesNotExist();
         }
 
         const inputDB: IPurchaseInputDBDTO = {
@@ -104,17 +122,17 @@ export class ShowBusiness {
             user_id: payload.id
         }
 
-        const userAlreadyBought = await this.showDatabase.findTicketsById(inputDB);
+        const userAlreadyBought = await this.showDatabase.findTicketsByShowAndUser(inputDB);
 
         if (userAlreadyBought) {
-            throw new Error("A user can only buy 1 ticket");
+            throw new BuyLimit();
         }
 
         const countTickets = await this.showDatabase.countTickets(show_id);
         const ticketsSold = countTickets["count(*)"];
 
         if (ticketsSold >= 500) {
-            throw new Error("Tickets sold out");
+            throw new TicketsSoldOut();
         }
 
         const id = this.idGenerator.generate();
@@ -126,5 +144,35 @@ export class ShowBusiness {
         }
 
         await this.showDatabase.purchase(finalInput);
+
+        return "Ticket purchased"
+    }
+
+    public deleteTicket = async (input: IDeleteTicketInputDTO) => {
+        const { id, token } = input;
+
+        if (!id || !token) {
+            throw new EmptyField();
+        }
+
+        const payload = this.authenticator.getTokenPayload(token);
+
+        if (!payload) {
+            throw new InvalidToken();
+        }
+
+        const ticket = await this.showDatabase.findTicketById(id);
+
+        if (!ticket) {
+            throw new InvalidTicket();
+        }
+
+        if (ticket.user_id !== payload.id) {
+            throw new TIcketSellAuth();
+        }
+
+        await this.showDatabase.sellTicket(id);
+
+        return "Ticket sold";
     }
 }
