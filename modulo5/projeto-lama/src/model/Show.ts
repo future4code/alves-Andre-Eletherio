@@ -56,3 +56,10 @@ export interface IDeleteTicketInputDTO {
     id: string,
     token: string
 }
+
+export interface IShowsWithTickets {
+    id: string,
+    band: string,
+    starts_at: Date,
+    ticketsAvaiable?: number
+}

@@ -67,6 +67,10 @@ export class ShowController {
                 token: req.headers.authorization as string
             }
 
+            await this.showBusiness.deleteTicket(input);
+
+            res.send("Ticket sold");
+
         } catch (error) {
             if (error instanceof Error){
                 return res.status(res.statusCode).send({message: error.message});

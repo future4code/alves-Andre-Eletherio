@@ -5,7 +5,7 @@ export class ShowDatabase extends BaseDatabase{
     public static TABLE_SHOWS = "lama_shows";
     public static TABLE_TICKETS = "lama_tickets";
 
-    public findByDate = async (starts_at: Date) => {
+    public findByDate = async (starts_at: Date): Promise<IShowsDB | undefined> => {
         const showDB: IShowsDB[] = await BaseDatabase
             .connection(ShowDatabase.TABLE_SHOWS)
             .select()
@@ -27,7 +27,7 @@ export class ShowDatabase extends BaseDatabase{
         return shows;
     }
 
-    public findShowById = async (id: string) => {
+    public findShowById = async (id: string): Promise<IShowsDB | undefined> => {
         const show: IShowsDB[] = await BaseDatabase
                 .connection(ShowDatabase.TABLE_SHOWS)
                 .select()
@@ -35,7 +35,7 @@ export class ShowDatabase extends BaseDatabase{
         return show[0];
     }
 
-    public findTicketsById = async (input: IPurchaseInputDBDTO) => {
+    public findTicketsByShowAndUser = async (input: IPurchaseInputDBDTO): Promise<ITicketsDB | undefined> => {
         const {show_id, user_id} = input;
         const user: ITicketsDB[] = await BaseDatabase
                 .connection(ShowDatabase.TABLE_TICKETS)
@@ -57,6 +57,21 @@ export class ShowDatabase extends BaseDatabase{
         await BaseDatabase
             .connection(ShowDatabase.TABLE_TICKETS)
             .insert(input);
+    }
+
+    public findTicketById = async (id: string): Promise<ITicketsDB | undefined> => {
+        const ticket: ITicketsDB[] = await BaseDatabase
+                .connection(ShowDatabase.TABLE_TICKETS)
+                .select()
+                .where({id})
+        return ticket[0];
+    }
+
+    public sellTicket = async (id: string) => {
+        await BaseDatabase
+            .connection(ShowDatabase.TABLE_TICKETS)
+            .delete()
+            .where({id})
     }
 
 }

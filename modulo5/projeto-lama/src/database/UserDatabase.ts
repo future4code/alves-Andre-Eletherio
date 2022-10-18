@@ -4,13 +4,13 @@ import { BaseDatabase } from "./BaseDatabase";
 export class UserDatabase extends BaseDatabase{
     public static TABLE_USERS = "lama_users";
 
-    public findByEmail = async (email: string): Promise<User> => {
+    public findByEmail = async (email: string): Promise<IUserDB | undefined> => {
         const user: IUserDB[] = await BaseDatabase
             .connection(UserDatabase.TABLE_USERS)
             .select()
             .where({email})
 
-        return user[0] && User.toUserModel(user[0]);
+        return user[0];
     }
 
     public register = async (input: IUserDB): Promise<void> => {

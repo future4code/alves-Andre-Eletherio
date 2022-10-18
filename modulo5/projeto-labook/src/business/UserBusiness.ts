@@ -41,7 +41,7 @@ export class UserBusiness {
         }
 
         const emailExists: User = await this.userDatabase.findByEmail(email);
-
+        
         if (emailExists) {
             throw new Error("E-mail already exists");
         }
